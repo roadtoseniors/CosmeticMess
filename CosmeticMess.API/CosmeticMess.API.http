@@ -1,0 +1,6 @@
+@CosmeticMess.API_HostAddress = http://localhost:5106
+
+GET {{CosmeticMess.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
