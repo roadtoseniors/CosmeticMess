@@ -5,9 +5,9 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
-using CosmeticMess.Android;
-using CosmeticMess.Browser;
 using CosmeticMess.Views;
+using CosmeticMess.Views.Android;
+using CosmeticMess.Views.Browser;
 
 namespace CosmeticMess;
 

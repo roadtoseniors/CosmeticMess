@@ -2,11 +2,11 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace CosmeticMess.Browser;
+namespace CosmeticMess.Views.Android;
 
-public partial class MainBrowser : UserControl
+public partial class MainAndroid : UserControl
 {
-    public MainBrowser()
+    public MainAndroid()
     {
         InitializeComponent();
     }
