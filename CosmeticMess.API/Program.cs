@@ -5,6 +5,7 @@ using System.Text;
 using CosmeticMess.Context;
 using CosmeticMess.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,7 +45,7 @@ app.MapPost("/auth/login", (AuthData data, MyDbContext cnt) =>
             issuer: AuthOptions.ISSUER,
             audience: AuthOptions.AUDIENCE,
             claims: claims,
-            expires: DateTime.UtcNow.Add(TimeSpan.FromHours(24)),
+            expires: DateTime.UtcNow.Add(TimeSpan.FromDays(365)),
             signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
         return Results.Ok(new {User = user, Token = new JwtSecurityTokenHandler().WriteToken(jwt)});
     }
@@ -54,83 +55,156 @@ app.MapPost("/auth/login", (AuthData data, MyDbContext cnt) =>
     }
 });
 
-app.MapGet("/api/users", (MyDbContext cnt) =>{
+app.MapGet("/api/users", [Authorize](MyDbContext cnt) =>{
     return cnt.Users.ToList();
 });
 
-app.MapGet("/api/servicetypes", (MyDbContext cnt) =>
+app.MapGet("/api/servicetypes", [Authorize](MyDbContext cnt) =>
 {
     return cnt.ServiceTypes.ToList();
 });
 
-app.MapGet("/api/roles", (MyDbContext cnt) =>
+app.MapGet("/api/roles", [Authorize](MyDbContext cnt) =>
 {
     return cnt.Roles.ToList();
 });
 
-app.MapGet("/api/recordstatuses", (MyDbContext cnt) =>
+app.MapGet("/api/recordstatuses", [Authorize](MyDbContext cnt) =>
 {
     return cnt.RecordStatuses.ToList();
 });
 
-app.MapGet("/api/records", (MyDbContext cnt) =>
+app.MapGet("/api/records", [Authorize](MyDbContext cnt) =>
 {
     return cnt.Records.ToList();
 });
 
-app.MapGet("/api/producttypes", (MyDbContext cnt) =>
+app.MapGet("/api/producttypes", [Authorize](MyDbContext cnt) =>
 {
     return cnt.ProductTypes.ToList();
 });
 
-app.MapGet("/api/products", (MyDbContext cnt) =>
+app.MapGet("/api/products", [Authorize](MyDbContext cnt) =>
 {
     return cnt.Products.ToList();
 });
 
-app.MapGet("/api/paymenttypes", (MyDbContext cnt) =>
+app.MapGet("/api/paymenttypes", [Authorize](MyDbContext cnt) =>
 {
     return cnt.PaymentTypes.ToList();
 });
 
-app.MapGet("/api/orderstatuses", (MyDbContext cnt) =>
+app.MapGet("/api/orderstatuses", [Authorize](MyDbContext cnt) =>
 {
     return cnt.OrderStatuses.ToList();
 });
 
-app.MapGet("/api/orderitems", (MyDbContext cnt) =>
+app.MapGet("/api/orderitems", [Authorize](MyDbContext cnt) =>
 {
     return cnt.OrderItems.ToList();
 });
 
-app.MapGet("/api/orders", (MyDbContext cnt) =>
+app.MapGet("/api/orders", [Authorize](MyDbContext cnt) =>
 {
     return cnt.Orders.ToList();
 });
 
-app.MapGet("/api/masterservices", (MyDbContext cnt) =>
+app.MapGet("/api/masterservices", [Authorize](MyDbContext cnt) =>
 {
     return cnt.MasterServices.ToList();
 });
 
-app.MapGet("/api/manufacturers", (MyDbContext cnt) =>
+app.MapGet("/api/manufacturers", [Authorize](MyDbContext cnt) =>
 {
     return cnt.Manufacturers.ToList();
 });
 
-app.MapGet("/api/countries", (MyDbContext cnt) =>
+app.MapGet("/api/countries", [Authorize](MyDbContext cnt) =>
 {
     return cnt.Countries.ToList();
 });
 
-app.MapGet("/api/basketitems", (MyDbContext cnt) =>
+app.MapGet("/api/basketitems", [Authorize](MyDbContext cnt) =>
 {
     return cnt.BasketItems.ToList();
 });
 
-app.MapGet("/api/baskets", (MyDbContext cnt) =>
+app.MapGet("/api/baskets", [Authorize](MyDbContext cnt) =>
 {
     return cnt.Baskets.ToList();
+});
+
+app.MapPost("/api/post/users", [Authorize](User user, MyDbContext cnt) =>
+{
+    cnt.Attach(user.RoleId);
+    cnt.Users.Add(user);
+    cnt.SaveChanges();
+    return Results.Ok(user);
+});
+
+app.MapPost("/api/post/products", [Authorize](Product product, MyDbContext cnt) =>
+{
+    
+});
+
+app.MapDelete("/api/delete/users", [Authorize](int id, MyDbContext cnt) =>
+{
+    User user = cnt.Users.FirstOrDefault(u => u.Id == id);
+    if (user != null)
+    {
+        cnt.Users.Remove(user);
+        cnt.SaveChanges();
+        return Results.Ok();
+    }
+    else
+    {
+        return Results.BadRequest();
+    }
+});
+
+app.MapDelete("/api/delete/orders", [Authorize](int id, MyDbContext cnt) =>
+{
+    Order order = cnt.Orders.FirstOrDefault(o => o.Id == id);
+    if (order != null)
+    {
+        cnt.Orders.Remove(order);
+        cnt.SaveChanges();
+        return Results.Ok();
+    }
+    else
+    {
+        return Results.BadRequest();
+    }
+});
+
+app.MapDelete("/api/delete/products", [Authorize](int id, MyDbContext cnt) =>
+{
+    Product product = cnt.Products.FirstOrDefault(p => p.Id == id);
+    if (product != null)
+    {
+        cnt.Products.Remove(product);
+        cnt.SaveChanges();
+        return Results.Ok();
+    }
+    else
+    {
+        return Results.BadRequest();
+    }
+});
+
+app.MapDelete("/api/delete/records", [Authorize](int id, MyDbContext cnt) =>
+{
+    Record record = cnt.Records.FirstOrDefault(r => r.Id == id);
+    if (record != null)
+    {
+        cnt.Records.Remove(record);
+        cnt.SaveChanges();
+        return Results.Ok();
+    }
+    else
+    {
+        return Results.BadRequest();
+    }
 });
 
 app.Run();
@@ -139,7 +213,7 @@ public class AuthOptions
 {
     public const string ISSUER = "Masho";
     public const string AUDIENCE = "Vava";
-    private const string KEY = "Baton12345";
+    private const string KEY = "BatonBatonBatonBatonBatonBaton_BatonBatonBaton123!";
 
     public static SymmetricSecurityKey GetSymmetricSecurityKey() =>
         new SymmetricSecurityKey(Encoding.UTF8.GetBytes(KEY));

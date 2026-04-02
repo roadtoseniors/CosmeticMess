@@ -1,0 +1,18 @@
+﻿<wpfLikeAvaloniaNavigation:Page xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:wpfLikeAvaloniaNavigation="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="CosmeticMess.Views.Desktop.RegistrationDesktop">
+    <Grid>
+        <Border>
+            <StackPanel Orientation="Vertical" Spacing="6">
+                <TextBox Watermark="Введите имя"/>
+                <TextBox Watermark="Введите фамилию"/>
+                <TextBox Watermark="Введите телефон"/>
+                <TextBox Watermark="Введите возраст"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</wpfLikeAvaloniaNavigation:Page>

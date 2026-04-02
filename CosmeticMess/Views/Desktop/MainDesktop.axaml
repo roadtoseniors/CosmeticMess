@@ -1,0 +1,31 @@
+﻿<wpfLikeAvaloniaNavigation:Page xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:wpfLikeAvaloniaNavigation="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="CosmeticMess.Views.Desktop.MainDesktop" Background="#f6f6f6" Foreground="#8785a2">
+    <Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="*, Auto">
+        <Border Grid.Row="0" Grid.Column="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
+            <StackPanel Orientation="Horizontal" Spacing="5" Margin="10,10,10,10">
+                <TextBlock Text="Главная страница" FontSize="20" FontFamily="Georgia" Margin="5"/>
+                <Button Content="Вход" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Authorization"/>
+                <Button Content="Регистрация" Background="LightGreen" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Registration"/>
+            </StackPanel>
+        </Border>
+        
+        <Border Grid.Row="1" Grid.Column="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
+            <StackPanel Orientation="Horizontal" Spacing="5" Margin="10,10,10,10">
+                <TextBlock Text="Фильтрация по:" FontSize="20" FontFamily="Georgia" Margin="5"/>
+                <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Content="По мастеру" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20"/>
+                    <Button Content="По типу услуги" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        
+        <Border Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
+            
+        </Border>
+    </Grid>
+</wpfLikeAvaloniaNavigation:Page>

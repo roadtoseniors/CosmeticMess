@@ -3,12 +3,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="using:CosmeticMess.Views"
+        xmlns:wpfLikeAvaloniaNavigation="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="CosmeticMess.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="CosmeticMess">
         
-        <Grid>
-           <TextBlock Text="Десктоп"/>     
-        </Grid>
+        <wpfLikeAvaloniaNavigation:Frame Name="MainFrame"/>
 </Window>
