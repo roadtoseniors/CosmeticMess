@@ -50,7 +50,7 @@ public partial class MyDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseLazyLoadingProxies().UseSqlServer("Data Source=DESKTOP-AB4C90S;Initial Catalog=CosmeticMessDB;Integrated Security=True;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-AB4C90S;Initial Catalog=CosmeticMessDB;Integrated Security=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -60,9 +60,7 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("Basket");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.UserId).HasColumnName("UserID");
 
             entity.HasOne(d => d.User).WithMany(p => p.Baskets)
@@ -77,12 +75,10 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("BasketItem");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.BasketId).HasColumnName("BasketID");
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
-            entity.Property(e => e.Quantity).HasDefaultValue(1);
+            entity.Property(e => e.Quantity).HasDefaultValue(1, "DF__BasketIte__Quant__60A75C0F");
 
             entity.HasOne(d => d.Basket).WithMany(p => p.BasketItems)
                 .HasForeignKey(d => d.BasketId)
@@ -101,9 +97,7 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("Country");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Name).HasMaxLength(100);
         });
 
@@ -113,9 +107,7 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("Manufacturer");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.CountryId).HasColumnName("CountryID");
             entity.Property(e => e.Name).HasMaxLength(100);
 
@@ -131,9 +123,7 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("MasterService");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.ServiceTypeId).HasColumnName("ServiceTypeID");
             entity.Property(e => e.UserId).HasColumnName("UserID");
 
@@ -154,9 +144,7 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("Order");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Date).HasColumnType("datetime");
             entity.Property(e => e.PaymentId).HasColumnName("PaymentID");
             entity.Property(e => e.StatusId).HasColumnName("StatusID");
@@ -184,13 +172,11 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("OrderItem");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.OrderId).HasColumnName("OrderID");
             entity.Property(e => e.PriceOrder).HasColumnType("decimal(10, 2)");
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
-            entity.Property(e => e.Quantity).HasDefaultValue(1);
+            entity.Property(e => e.Quantity).HasDefaultValue(1, "DF__OrderItem__Quant__6A30C649");
 
             entity.HasOne(d => d.Order).WithMany(p => p.OrderItems)
                 .HasForeignKey(d => d.OrderId)
@@ -209,9 +195,7 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("OrderStatus");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Name).HasMaxLength(50);
         });
 
@@ -221,9 +205,7 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("PaymentType");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Payment).HasMaxLength(100);
         });
 
@@ -233,9 +215,7 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("Product");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Description).HasMaxLength(500);
             entity.Property(e => e.DiscountPercent).HasColumnName("Discount_percent");
             entity.Property(e => e.ManufacturerId).HasColumnName("ManufacturerID");
@@ -261,9 +241,7 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("ProductType");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Name).HasMaxLength(100);
         });
 
@@ -273,9 +251,7 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("Record");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.ClientId).HasColumnName("ClientID");
             entity.Property(e => e.Comment).HasMaxLength(500);
             entity.Property(e => e.Date).HasColumnType("datetime");
@@ -316,9 +292,7 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("RecordStatus");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Name).HasMaxLength(50);
         });
 
@@ -328,9 +302,7 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("Role");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Name).HasMaxLength(50);
         });
 
@@ -340,9 +312,7 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("ServiceType");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Name).HasMaxLength(200);
             entity.Property(e => e.Price).HasColumnType("decimal(10, 2)");
         });
@@ -353,9 +323,7 @@ public partial class MyDbContext : DbContext
 
             entity.ToTable("User");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("ID");
+            entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.LastName).HasMaxLength(100);
             entity.Property(e => e.Login).HasMaxLength(100);
             entity.Property(e => e.Name).HasMaxLength(100);

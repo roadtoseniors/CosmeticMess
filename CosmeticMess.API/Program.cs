@@ -136,7 +136,7 @@ app.MapGet("/api/baskets", [Authorize](MyDbContext cnt) =>
 
 app.MapPost("/api/post/users", [Authorize](User user, MyDbContext cnt) =>
 {
-    cnt.Attach(user.RoleId);
+    cnt.Attach(user.Role);
     cnt.Users.Add(user);
     cnt.SaveChanges();
     return Results.Ok(user);
@@ -144,7 +144,61 @@ app.MapPost("/api/post/users", [Authorize](User user, MyDbContext cnt) =>
 
 app.MapPost("/api/post/products", [Authorize](Product product, MyDbContext cnt) =>
 {
-    
+    cnt.Attach(product.ProductType);
+    cnt.Attach(product.Manufacturer);
+    cnt.Products.Add(product);
+    cnt.SaveChanges();
+    return Results.Ok(product);
+});
+
+app.MapPost("/api/post/records", [Authorize](Record record, MyDbContext cnt) =>
+{
+    cnt.Attach(record.Master);
+    cnt.Attach(record.Client);
+    cnt.Attach(record.ServiceType);
+    cnt.Attach(record.Payment);
+    cnt.Attach(record.Status);
+    cnt.Records.Add(record);
+    cnt.SaveChanges();
+    return Results.Ok(record);
+});
+
+app.MapPost("/api/post/orders", [Authorize](Order order, MyDbContext cnt) =>
+{
+    cnt.Attach(order.Payment);
+    cnt.Attach(order.User);
+    cnt.Attach(order.Status);
+    cnt.Orders.Add(order);
+    cnt.SaveChanges();
+    return Results.Ok(order);
+});
+
+app.MapPut("/api/put/users", [Authorize](User user, MyDbContext cnt) =>
+{
+    cnt.Users.Update(user);
+    cnt.SaveChanges();
+    return Results.Ok(user);
+});
+
+app.MapPut("/api/put/products", [Authorize](Product product, MyDbContext cnt) =>
+{
+    cnt.Products.Update(product);
+    cnt.SaveChanges();
+    return Results.Ok(product);
+});
+
+app.MapPut("/api/put/orders", [Authorize](Order order, MyDbContext cnt) =>
+{
+    cnt.Orders.Update(order);
+    cnt.SaveChanges();
+    return Results.Ok(order);
+});
+
+app.MapPut("/api/put/records", [Authorize](Record record, MyDbContext cnt) =>
+{
+    cnt.Records.Update(record);
+    cnt.SaveChanges();
+    return Results.Ok(record);
 });
 
 app.MapDelete("/api/delete/users", [Authorize](int id, MyDbContext cnt) =>
