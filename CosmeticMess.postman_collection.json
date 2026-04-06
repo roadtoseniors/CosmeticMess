@@ -1,0 +1,1865 @@
+{
+  "info": {
+    "_postman_id": "0c5d5e47-b867-4003-8669-6765b0cdf528",
+    "name": "CosmeticMess",
+    "description": "##### REST API для косметического салона-магазина. Реализованы CRUD-запросы, аутентификация JWToken\\`ом на ASP.NET",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "40562705"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Auth",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiaXZhbm92YUBtYWlsLnJ1IiwiZXhwIjoxODA2NjY0NjM5LCJpc3MiOiJNYXNobyIsImF1ZCI6IlZhdmEifQ.ewhjrd8ubmNJFF1B3G3m-o70nP88xaBmTBF74w0wGSQ",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"login\":\"ivanova@mail.ru\",\r\n    \"password\":\"12345\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "##### POST-запрос для выдачи токена пользователю"
+          },
+          "response": [
+            {
+              "name": "Auth",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"login\":\"ivanova@mail.ru\",\r\n    \"password\":\"12345\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/auth/login",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 02 Apr 2026 11:17:18 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"user\": {\n        \"id\": 1,\n        \"name\": \"Анна\",\n        \"lastName\": \"Иванова\",\n        \"phone\": \"79001112233\",\n        \"login\": \"ivanova@mail.ru\",\n        \"password\": \"12345\",\n        \"age\": 22,\n        \"isFrozen\": false,\n        \"role\": {\n            \"id\": 3,\n            \"name\": \"Менеджер\"\n        }\n    },\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiaXZhbm92YUBtYWlsLnJ1IiwiZXhwIjoxODA2NjY0NjM5LCJpc3MiOiJNYXNobyIsImF1ZCI6IlZhdmEifQ.ewhjrd8ubmNJFF1B3G3m-o70nP88xaBmTBF74w0wGSQ\"\n}"
+            }
+          ]
+        }
+      ],
+      "description": "##### Папка с POST-запросами для аутентификации и авторизации пользователя в приложении"
+    },
+    {
+      "name": "Get",
+      "item": [
+        {
+          "name": "GetUsers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "##### GET-запрос для получения пользователей"
+          },
+          "response": [
+            {
+              "name": "GetUsers",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/users",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "users"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 02 Apr 2026 11:19:16 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Анна\",\n        \"lastName\": \"Иванова\",\n        \"phone\": \"79001112233\",\n        \"login\": \"ivanova@mail.ru\",\n        \"password\": \"12345\",\n        \"age\": 22,\n        \"isFrozen\": false,\n        \"role\": {\n            \"id\": 3,\n            \"name\": \"Менеджер\"\n        }\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Дмитрий\",\n        \"lastName\": \"Петров\",\n        \"phone\": \"79002223344\",\n        \"login\": \"petrov@mail.ru\",\n        \"password\": \"54321\",\n        \"age\": 34,\n        \"isFrozen\": false,\n        \"role\": {\n            \"id\": 2,\n            \"name\": \"Мастер\"\n        }\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Владимир\",\n        \"lastName\": \"Горланов\",\n        \"phone\": \"79003334455\",\n        \"login\": \"smirnova@mail.ru\",\n        \"password\": \"23456\",\n        \"age\": 23,\n        \"isFrozen\": false,\n        \"role\": {\n            \"id\": 2,\n            \"name\": \"Мастер\"\n        }\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Максим\",\n        \"lastName\": \"Гордов\",\n        \"phone\": \"79004445566\",\n        \"login\": \"kozlova@mail.ru\",\n        \"password\": \"65432\",\n        \"age\": 23,\n        \"isFrozen\": false,\n        \"role\": {\n            \"id\": 2,\n            \"name\": \"Мастер\"\n        }\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Вадим\",\n        \"lastName\": \"Гусенков\",\n        \"phone\": \"79005556677\",\n        \"login\": \"novikov@mail.ru\",\n        \"password\": \"34567\",\n        \"age\": 12,\n        \"isFrozen\": false,\n        \"role\": {\n            \"id\": 4,\n            \"name\": \"Администратор\"\n        }\n    },\n    {\n        \"id\": 6,\n        \"name\": \"Максим\",\n        \"lastName\": \"Нормасик\",\n        \"phone\": \"79006667788\",\n        \"login\": \"fedorova@mail.ru\",\n        \"password\": \"76543\",\n        \"age\": 14,\n        \"isFrozen\": false,\n        \"role\": {\n            \"id\": 4,\n            \"name\": \"Администратор\"\n        }\n    },\n    {\n        \"id\": 7,\n        \"name\": \"Никуся\",\n        \"lastName\": \"Бабская\",\n        \"phone\": \"79007778899\",\n        \"login\": \"morozov@mail.ru\",\n        \"password\": \"45678\",\n        \"age\": 16,\n        \"isFrozen\": false,\n        \"role\": {\n            \"id\": 1,\n            \"name\": \"Клиент\"\n        }\n    },\n    {\n        \"id\": 8,\n        \"name\": \"Мария\",\n        \"lastName\": \"Бабская\",\n        \"phone\": \"79001234566\",\n        \"login\": \"masha@mail.ru\",\n        \"password\": \"87654\",\n        \"age\": 19,\n        \"isFrozen\": false,\n        \"role\": {\n            \"id\": 1,\n            \"name\": \"Клиент\"\n        }\n    },\n    {\n        \"id\": 9,\n        \"name\": \"Лера\",\n        \"lastName\": \"Бабская\",\n        \"phone\": \"79008765631\",\n        \"login\": \"lero@mail.ru\",\n        \"password\": \"56789\",\n        \"age\": 18,\n        \"isFrozen\": false,\n        \"role\": {\n            \"id\": 1,\n            \"name\": \"Клиент\"\n        }\n    },\n    {\n        \"id\": 10,\n        \"name\": \"Алиса\",\n        \"lastName\": \"Бабская\",\n        \"phone\": \"79001287236\",\n        \"login\": \"alico@mail.ru\",\n        \"password\": \"98765\",\n        \"age\": 18,\n        \"isFrozen\": false,\n        \"role\": {\n            \"id\": 1,\n            \"name\": \"Клиент\"\n        }\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "GetServiceTypes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "##### GET-запрос для получения типа услуги"
+          },
+          "response": [
+            {
+              "name": "GetServiceTypes",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/servicetypes",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "servicetypes"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 02 Apr 2026 11:20:08 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Маникюр классический\",\n        \"price\": 1200\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Маникюр с покрытием гель-лак\",\n        \"price\": 1800\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Педикюр классический\",\n        \"price\": 1500\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Стрижка женская\",\n        \"price\": 2000\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Окрашивание волос\",\n        \"price\": 4500\n    },\n    {\n        \"id\": 6,\n        \"name\": \"Наращивание ресниц\",\n        \"price\": 2500\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "GetRoles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "##### GET-запрос для получения ролей"
+          },
+          "response": [
+            {
+              "name": "GetRoles",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/roles",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "roles"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 02 Apr 2026 11:21:05 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Клиент\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Мастер\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Менеджер\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Администратор\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "GetRecordStatus",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "##### GET-запрос для получения статуса записи"
+          },
+          "response": [
+            {
+              "name": "GetRecordStatus",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/recordstatuses",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "recordstatuses"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 02 Apr 2026 11:21:38 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Выполнено\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Ожидает\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Отменено\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "GetRecord",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "##### GET-запрос для получения записей"
+          },
+          "response": [
+            {
+              "name": "GetRecord",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/records",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "records"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 02 Apr 2026 11:22:04 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"date\": \"2025-04-10T10:00:00\",\n        \"comment\": \"Хотят красный цвет\",\n        \"client\": {\n            \"id\": 7,\n            \"name\": \"Никуся\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79007778899\",\n            \"login\": \"morozov@mail.ru\",\n            \"password\": \"45678\",\n            \"age\": 16,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        },\n        \"master\": {\n            \"id\": 2,\n            \"name\": \"Дмитрий\",\n            \"lastName\": \"Петров\",\n            \"phone\": \"79002223344\",\n            \"login\": \"petrov@mail.ru\",\n            \"password\": \"54321\",\n            \"age\": 34,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        },\n        \"payment\": {\n            \"id\": 1,\n            \"payment\": \"Наличными при получении\"\n        },\n        \"serviceType\": {\n            \"id\": 1,\n            \"name\": \"Маникюр классический\",\n            \"price\": 1200\n        },\n        \"status\": {\n            \"id\": 1,\n            \"name\": \"Выполнено\"\n        }\n    },\n    {\n        \"id\": 2,\n        \"date\": \"2025-04-11T12:00:00\",\n        \"comment\": null,\n        \"client\": {\n            \"id\": 8,\n            \"name\": \"Мария\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79001234566\",\n            \"login\": \"masha@mail.ru\",\n            \"password\": \"87654\",\n            \"age\": 19,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        },\n        \"master\": {\n            \"id\": 3,\n            \"name\": \"Владимир\",\n            \"lastName\": \"Горланов\",\n            \"phone\": \"79003334455\",\n            \"login\": \"smirnova@mail.ru\",\n            \"password\": \"23456\",\n            \"age\": 23,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        },\n        \"payment\": {\n            \"id\": 2,\n            \"payment\": \"Картой\"\n        },\n        \"serviceType\": {\n            \"id\": 2,\n            \"name\": \"Маникюр с покрытием гель-лак\",\n            \"price\": 1800\n        },\n        \"status\": {\n            \"id\": 2,\n            \"name\": \"Ожидает\"\n        }\n    },\n    {\n        \"id\": 3,\n        \"date\": \"2025-04-15T14:00:00\",\n        \"comment\": null,\n        \"client\": {\n            \"id\": 9,\n            \"name\": \"Лера\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79008765631\",\n            \"login\": \"lero@mail.ru\",\n            \"password\": \"56789\",\n            \"age\": 18,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        },\n        \"master\": {\n            \"id\": 4,\n            \"name\": \"Максим\",\n            \"lastName\": \"Гордов\",\n            \"phone\": \"79004445566\",\n            \"login\": \"kozlova@mail.ru\",\n            \"password\": \"65432\",\n            \"age\": 23,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        },\n        \"payment\": {\n            \"id\": 3,\n            \"payment\": \"СБП\"\n        },\n        \"serviceType\": {\n            \"id\": 3,\n            \"name\": \"Педикюр классический\",\n            \"price\": 1500\n        },\n        \"status\": {\n            \"id\": 2,\n            \"name\": \"Ожидает\"\n        }\n    },\n    {\n        \"id\": 4,\n        \"date\": \"2025-04-12T11:00:00\",\n        \"comment\": null,\n        \"client\": {\n            \"id\": 10,\n            \"name\": \"Алиса\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79001287236\",\n            \"login\": \"alico@mail.ru\",\n            \"password\": \"98765\",\n            \"age\": 18,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        },\n        \"master\": {\n            \"id\": 2,\n            \"name\": \"Дмитрий\",\n            \"lastName\": \"Петров\",\n            \"phone\": \"79002223344\",\n            \"login\": \"petrov@mail.ru\",\n            \"password\": \"54321\",\n            \"age\": 34,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        },\n        \"payment\": {\n            \"id\": 4,\n            \"payment\": \"Долями\"\n        },\n        \"serviceType\": {\n            \"id\": 4,\n            \"name\": \"Стрижка женская\",\n            \"price\": 2000\n        },\n        \"status\": {\n            \"id\": 2,\n            \"name\": \"Ожидает\"\n        }\n    },\n    {\n        \"id\": 5,\n        \"date\": \"2025-04-20T15:00:00\",\n        \"comment\": \"Темный блонд\",\n        \"client\": {\n            \"id\": 7,\n            \"name\": \"Никуся\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79007778899\",\n            \"login\": \"morozov@mail.ru\",\n            \"password\": \"45678\",\n            \"age\": 16,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        },\n        \"master\": {\n            \"id\": 3,\n            \"name\": \"Владимир\",\n            \"lastName\": \"Горланов\",\n            \"phone\": \"79003334455\",\n            \"login\": \"smirnova@mail.ru\",\n            \"password\": \"23456\",\n            \"age\": 23,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        },\n        \"payment\": {\n            \"id\": 4,\n            \"payment\": \"Долями\"\n        },\n        \"serviceType\": {\n            \"id\": 5,\n            \"name\": \"Окрашивание волос\",\n            \"price\": 4500\n        },\n        \"status\": {\n            \"id\": 2,\n            \"name\": \"Ожидает\"\n        }\n    },\n    {\n        \"id\": 6,\n        \"date\": \"2025-04-12T12:00:00\",\n        \"comment\": null,\n        \"client\": {\n            \"id\": 8,\n            \"name\": \"Мария\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79001234566\",\n            \"login\": \"masha@mail.ru\",\n            \"password\": \"87654\",\n            \"age\": 19,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        },\n        \"master\": {\n            \"id\": 4,\n            \"name\": \"Максим\",\n            \"lastName\": \"Гордов\",\n            \"phone\": \"79004445566\",\n            \"login\": \"kozlova@mail.ru\",\n            \"password\": \"65432\",\n            \"age\": 23,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        },\n        \"payment\": {\n            \"id\": 1,\n            \"payment\": \"Наличными при получении\"\n        },\n        \"serviceType\": {\n            \"id\": 6,\n            \"name\": \"Наращивание ресниц\",\n            \"price\": 2500\n        },\n        \"status\": {\n            \"id\": 3,\n            \"name\": \"Отменено\"\n        }\n    },\n    {\n        \"id\": 7,\n        \"date\": \"2025-04-16T18:00:00\",\n        \"comment\": null,\n        \"client\": {\n            \"id\": 9,\n            \"name\": \"Лера\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79008765631\",\n            \"login\": \"lero@mail.ru\",\n            \"password\": \"56789\",\n            \"age\": 18,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        },\n        \"master\": {\n            \"id\": 2,\n            \"name\": \"Дмитрий\",\n            \"lastName\": \"Петров\",\n            \"phone\": \"79002223344\",\n            \"login\": \"petrov@mail.ru\",\n            \"password\": \"54321\",\n            \"age\": 34,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        },\n        \"payment\": {\n            \"id\": 2,\n            \"payment\": \"Картой\"\n        },\n        \"serviceType\": {\n            \"id\": 1,\n            \"name\": \"Маникюр классический\",\n            \"price\": 1200\n        },\n        \"status\": {\n            \"id\": 2,\n            \"name\": \"Ожидает\"\n        }\n    },\n    {\n        \"id\": 8,\n        \"date\": \"2025-04-23T17:00:00\",\n        \"comment\": null,\n        \"client\": {\n            \"id\": 10,\n            \"name\": \"Алиса\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79001287236\",\n            \"login\": \"alico@mail.ru\",\n            \"password\": \"98765\",\n            \"age\": 18,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        },\n        \"master\": {\n            \"id\": 3,\n            \"name\": \"Владимир\",\n            \"lastName\": \"Горланов\",\n            \"phone\": \"79003334455\",\n            \"login\": \"smirnova@mail.ru\",\n            \"password\": \"23456\",\n            \"age\": 23,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        },\n        \"payment\": {\n            \"id\": 3,\n            \"payment\": \"СБП\"\n        },\n        \"serviceType\": {\n            \"id\": 2,\n            \"name\": \"Маникюр с покрытием гель-лак\",\n            \"price\": 1800\n        },\n        \"status\": {\n            \"id\": 2,\n            \"name\": \"Ожидает\"\n        }\n    },\n    {\n        \"id\": 9,\n        \"date\": \"2025-04-21T18:00:00\",\n        \"comment\": null,\n        \"client\": {\n            \"id\": 9,\n            \"name\": \"Лера\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79008765631\",\n            \"login\": \"lero@mail.ru\",\n            \"password\": \"56789\",\n            \"age\": 18,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        },\n        \"master\": {\n            \"id\": 4,\n            \"name\": \"Максим\",\n            \"lastName\": \"Гордов\",\n            \"phone\": \"79004445566\",\n            \"login\": \"kozlova@mail.ru\",\n            \"password\": \"65432\",\n            \"age\": 23,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        },\n        \"payment\": {\n            \"id\": 4,\n            \"payment\": \"Долями\"\n        },\n        \"serviceType\": {\n            \"id\": 3,\n            \"name\": \"Педикюр классический\",\n            \"price\": 1500\n        },\n        \"status\": {\n            \"id\": 2,\n            \"name\": \"Ожидает\"\n        }\n    },\n    {\n        \"id\": 10,\n        \"date\": \"2025-04-30T15:00:00\",\n        \"comment\": null,\n        \"client\": {\n            \"id\": 8,\n            \"name\": \"Мария\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79001234566\",\n            \"login\": \"masha@mail.ru\",\n            \"password\": \"87654\",\n            \"age\": 19,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        },\n        \"master\": {\n            \"id\": 2,\n            \"name\": \"Дмитрий\",\n            \"lastName\": \"Петров\",\n            \"phone\": \"79002223344\",\n            \"login\": \"petrov@mail.ru\",\n            \"password\": \"54321\",\n            \"age\": 34,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        },\n        \"payment\": {\n            \"id\": 1,\n            \"payment\": \"Наличными при получении\"\n        },\n        \"serviceType\": {\n            \"id\": 4,\n            \"name\": \"Стрижка женская\",\n            \"price\": 2000\n        },\n        \"status\": {\n            \"id\": 2,\n            \"name\": \"Ожидает\"\n        }\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "GetProductTypes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "##### GET-запрос для получения типа продукта"
+          },
+          "response": [
+            {
+              "name": "GetProductTypes",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/producttypes",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "producttypes"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 02 Apr 2026 11:30:14 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Шампунь\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Тушь\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Крем для лица\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Лак для ногтей\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Маска для волос\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "GetProducts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "##### GET-запрос для получения товаров"
+          },
+          "response": [
+            {
+              "name": "GetProducts",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/products",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "products"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 02 Apr 2026 11:30:48 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Шампунь Elseve\",\n        \"price\": 450,\n        \"description\": \"Увлажняющий шампунь для сухих волос\",\n        \"discountPercent\": 0,\n        \"rating\": 4.2,\n        \"isFrozen\": false,\n        \"manufacturer\": {\n            \"id\": 1,\n            \"name\": \"L'Oréal\",\n            \"country\": {\n                \"id\": 1,\n                \"name\": \"Франция\"\n            }\n        },\n        \"productType\": {\n            \"id\": 1,\n            \"name\": \"Шампунь\"\n        }\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Тушь Volum Express\",\n        \"price\": 650,\n        \"description\": \"Объёмная тушь для ресниц\",\n        \"discountPercent\": 20,\n        \"rating\": 4.5,\n        \"isFrozen\": false,\n        \"manufacturer\": {\n            \"id\": 2,\n            \"name\": \"Maybelline\",\n            \"country\": {\n                \"id\": 2,\n                \"name\": \"США\"\n            }\n        },\n        \"productType\": {\n            \"id\": 2,\n            \"name\": \"Тушь\"\n        }\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Крем облепиховый\",\n        \"price\": 380,\n        \"description\": \"Питательный крем на основе облепихи\",\n        \"discountPercent\": 0,\n        \"rating\": 4.6,\n        \"isFrozen\": false,\n        \"manufacturer\": {\n            \"id\": 3,\n            \"name\": \"Natura Siberica\",\n            \"country\": {\n                \"id\": 3,\n                \"name\": \"Россия\"\n            }\n        },\n        \"productType\": {\n            \"id\": 3,\n            \"name\": \"Крем для лица\"\n        }\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Лак Essie №201\",\n        \"price\": 520,\n        \"description\": \"Стойкий лак нюдового оттенка\",\n        \"discountPercent\": 10,\n        \"rating\": 4.7,\n        \"isFrozen\": false,\n        \"manufacturer\": {\n            \"id\": 2,\n            \"name\": \"Maybelline\",\n            \"country\": {\n                \"id\": 2,\n                \"name\": \"США\"\n            }\n        },\n        \"productType\": {\n            \"id\": 4,\n            \"name\": \"Лак для ногтей\"\n        }\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Маска Gliss Kur\",\n        \"price\": 390,\n        \"description\": \"Интенсивное восстановление волос\",\n        \"discountPercent\": 25,\n        \"rating\": 4.3,\n        \"isFrozen\": false,\n        \"manufacturer\": {\n            \"id\": 4,\n            \"name\": \"Schwarzkopf\",\n            \"country\": {\n                \"id\": 4,\n                \"name\": \"Германия\"\n            }\n        },\n        \"productType\": {\n            \"id\": 5,\n            \"name\": \"Маска для волос\"\n        }\n    },\n    {\n        \"id\": 6,\n        \"name\": \"Шампунь BC Bonacure\",\n        \"price\": 1200,\n        \"description\": \"Профессиональный шампунь для окрашенных волос\",\n        \"discountPercent\": 0,\n        \"rating\": 4.4,\n        \"isFrozen\": false,\n        \"manufacturer\": {\n            \"id\": 4,\n            \"name\": \"Schwarzkopf\",\n            \"country\": {\n                \"id\": 4,\n                \"name\": \"Германия\"\n            }\n        },\n        \"productType\": {\n            \"id\": 1,\n            \"name\": \"Шампунь\"\n        }\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "GetPaymentTypes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "##### GET-запрос для получения способов оплаты"
+          },
+          "response": [
+            {
+              "name": "GetPaymentTypes",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/paymenttypes",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "paymenttypes"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 02 Apr 2026 11:32:21 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"payment\": \"Наличными при получении\"\n    },\n    {\n        \"id\": 2,\n        \"payment\": \"Картой\"\n    },\n    {\n        \"id\": 3,\n        \"payment\": \"СБП\"\n    },\n    {\n        \"id\": 4,\n        \"payment\": \"Долями\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "GetOrderStatus",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "##### GET-запрос для получения статуса заказа"
+          },
+          "response": [
+            {
+              "name": "GetOrderStatus",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/orderstatuses",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "orderstatuses"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 02 Apr 2026 11:33:59 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Выполнен\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"В доставке\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Отменен\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "GetOrder",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "##### GET-запрос для получения заказов"
+          },
+          "response": [
+            {
+              "name": "GetOrder",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/orders",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "orders"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 02 Apr 2026 11:49:15 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"date\": \"2025-05-13T12:32:12\",\n        \"deliveryDate\": \"2025-04-15\",\n        \"payment\": {\n            \"id\": 2,\n            \"payment\": \"Картой\"\n        },\n        \"status\": {\n            \"id\": 2,\n            \"name\": \"В доставке\"\n        },\n        \"user\": {\n            \"id\": 7,\n            \"name\": \"Никуся\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79007778899\",\n            \"login\": \"morozov@mail.ru\",\n            \"password\": \"45678\",\n            \"age\": 16,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        }\n    },\n    {\n        \"id\": 2,\n        \"date\": \"2025-05-13T12:32:12\",\n        \"deliveryDate\": \"2025-05-16\",\n        \"payment\": {\n            \"id\": 3,\n            \"payment\": \"СБП\"\n        },\n        \"status\": {\n            \"id\": 2,\n            \"name\": \"В доставке\"\n        },\n        \"user\": {\n            \"id\": 8,\n            \"name\": \"Мария\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79001234566\",\n            \"login\": \"masha@mail.ru\",\n            \"password\": \"87654\",\n            \"age\": 19,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        }\n    },\n    {\n        \"id\": 3,\n        \"date\": \"2025-05-13T12:32:12\",\n        \"deliveryDate\": \"2025-05-17\",\n        \"payment\": {\n            \"id\": 4,\n            \"payment\": \"Долями\"\n        },\n        \"status\": {\n            \"id\": 2,\n            \"name\": \"В доставке\"\n        },\n        \"user\": {\n            \"id\": 9,\n            \"name\": \"Лера\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79008765631\",\n            \"login\": \"lero@mail.ru\",\n            \"password\": \"56789\",\n            \"age\": 18,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        }\n    },\n    {\n        \"id\": 4,\n        \"date\": \"2025-05-13T12:32:12\",\n        \"deliveryDate\": \"2025-05-15\",\n        \"payment\": {\n            \"id\": 1,\n            \"payment\": \"Наличными при получении\"\n        },\n        \"status\": {\n            \"id\": 2,\n            \"name\": \"В доставке\"\n        },\n        \"user\": {\n            \"id\": 10,\n            \"name\": \"Алиса\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79001287236\",\n            \"login\": \"alico@mail.ru\",\n            \"password\": \"98765\",\n            \"age\": 18,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        }\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "GetMasterServices",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "##### GET-запрос для получения услуг и какой мастер их выполняет"
+          },
+          "response": [
+            {
+              "name": "GetMasterServices",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/masterservices",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "masterservices"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 02 Apr 2026 11:50:11 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"serviceType\": {\n            \"id\": 1,\n            \"name\": \"Маникюр классический\",\n            \"price\": 1200\n        },\n        \"user\": {\n            \"id\": 2,\n            \"name\": \"Дмитрий\",\n            \"lastName\": \"Петров\",\n            \"phone\": \"79002223344\",\n            \"login\": \"petrov@mail.ru\",\n            \"password\": \"54321\",\n            \"age\": 34,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        }\n    },\n    {\n        \"id\": 2,\n        \"serviceType\": {\n            \"id\": 2,\n            \"name\": \"Маникюр с покрытием гель-лак\",\n            \"price\": 1800\n        },\n        \"user\": {\n            \"id\": 3,\n            \"name\": \"Владимир\",\n            \"lastName\": \"Горланов\",\n            \"phone\": \"79003334455\",\n            \"login\": \"smirnova@mail.ru\",\n            \"password\": \"23456\",\n            \"age\": 23,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        }\n    },\n    {\n        \"id\": 3,\n        \"serviceType\": {\n            \"id\": 3,\n            \"name\": \"Педикюр классический\",\n            \"price\": 1500\n        },\n        \"user\": {\n            \"id\": 4,\n            \"name\": \"Максим\",\n            \"lastName\": \"Гордов\",\n            \"phone\": \"79004445566\",\n            \"login\": \"kozlova@mail.ru\",\n            \"password\": \"65432\",\n            \"age\": 23,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        }\n    },\n    {\n        \"id\": 4,\n        \"serviceType\": {\n            \"id\": 4,\n            \"name\": \"Стрижка женская\",\n            \"price\": 2000\n        },\n        \"user\": {\n            \"id\": 2,\n            \"name\": \"Дмитрий\",\n            \"lastName\": \"Петров\",\n            \"phone\": \"79002223344\",\n            \"login\": \"petrov@mail.ru\",\n            \"password\": \"54321\",\n            \"age\": 34,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        }\n    },\n    {\n        \"id\": 5,\n        \"serviceType\": {\n            \"id\": 5,\n            \"name\": \"Окрашивание волос\",\n            \"price\": 4500\n        },\n        \"user\": {\n            \"id\": 3,\n            \"name\": \"Владимир\",\n            \"lastName\": \"Горланов\",\n            \"phone\": \"79003334455\",\n            \"login\": \"smirnova@mail.ru\",\n            \"password\": \"23456\",\n            \"age\": 23,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        }\n    },\n    {\n        \"id\": 6,\n        \"serviceType\": {\n            \"id\": 6,\n            \"name\": \"Наращивание ресниц\",\n            \"price\": 2500\n        },\n        \"user\": {\n            \"id\": 4,\n            \"name\": \"Максим\",\n            \"lastName\": \"Гордов\",\n            \"phone\": \"79004445566\",\n            \"login\": \"kozlova@mail.ru\",\n            \"password\": \"65432\",\n            \"age\": 23,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        }\n    },\n    {\n        \"id\": 7,\n        \"serviceType\": {\n            \"id\": 1,\n            \"name\": \"Маникюр классический\",\n            \"price\": 1200\n        },\n        \"user\": {\n            \"id\": 2,\n            \"name\": \"Дмитрий\",\n            \"lastName\": \"Петров\",\n            \"phone\": \"79002223344\",\n            \"login\": \"petrov@mail.ru\",\n            \"password\": \"54321\",\n            \"age\": 34,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        }\n    },\n    {\n        \"id\": 8,\n        \"serviceType\": {\n            \"id\": 2,\n            \"name\": \"Маникюр с покрытием гель-лак\",\n            \"price\": 1800\n        },\n        \"user\": {\n            \"id\": 3,\n            \"name\": \"Владимир\",\n            \"lastName\": \"Горланов\",\n            \"phone\": \"79003334455\",\n            \"login\": \"smirnova@mail.ru\",\n            \"password\": \"23456\",\n            \"age\": 23,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 2,\n                \"name\": \"Мастер\"\n            }\n        }\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "GetManufacturers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "##### GET-запрос для получения производителей"
+          },
+          "response": [
+            {
+              "name": "GetManufacturers",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/manufacturers",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "manufacturers"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 02 Apr 2026 11:52:24 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"L'Oréal\",\n        \"country\": {\n            \"id\": 1,\n            \"name\": \"Франция\"\n        }\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Maybelline\",\n        \"country\": {\n            \"id\": 2,\n            \"name\": \"США\"\n        }\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Natura Siberica\",\n        \"country\": {\n            \"id\": 3,\n            \"name\": \"Россия\"\n        }\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Schwarzkopf\",\n        \"country\": {\n            \"id\": 4,\n            \"name\": \"Германия\"\n        }\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "GetCountry",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "##### GET-запрос для получения страны производителя"
+          },
+          "response": [
+            {
+              "name": "GetCountry",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/countries",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "countries"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 02 Apr 2026 11:53:02 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Франция\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"США\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Россия\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Германия\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "GetBasketItems",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "##### GET-запрос для получения товаров из корзины пользователя"
+          },
+          "response": [
+            {
+              "name": "GetBasketItems",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/basketitems",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "basketitems"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 02 Apr 2026 11:53:35 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"quantity\": 1,\n        \"basket\": {\n            \"id\": 1,\n            \"user\": {\n                \"id\": 7,\n                \"name\": \"Никуся\",\n                \"lastName\": \"Бабская\",\n                \"phone\": \"79007778899\",\n                \"login\": \"morozov@mail.ru\",\n                \"password\": \"45678\",\n                \"age\": 16,\n                \"isFrozen\": false,\n                \"role\": {\n                    \"id\": 1,\n                    \"name\": \"Клиент\"\n                }\n            }\n        },\n        \"product\": {\n            \"id\": 1,\n            \"name\": \"Шампунь Elseve\",\n            \"price\": 450,\n            \"description\": \"Увлажняющий шампунь для сухих волос\",\n            \"discountPercent\": 0,\n            \"rating\": 4.2,\n            \"isFrozen\": false,\n            \"manufacturer\": {\n                \"id\": 1,\n                \"name\": \"L'Oréal\",\n                \"country\": {\n                    \"id\": 1,\n                    \"name\": \"Франция\"\n                }\n            },\n            \"productType\": {\n                \"id\": 1,\n                \"name\": \"Шампунь\"\n            }\n        }\n    },\n    {\n        \"id\": 2,\n        \"quantity\": 1,\n        \"basket\": {\n            \"id\": 1,\n            \"user\": {\n                \"id\": 7,\n                \"name\": \"Никуся\",\n                \"lastName\": \"Бабская\",\n                \"phone\": \"79007778899\",\n                \"login\": \"morozov@mail.ru\",\n                \"password\": \"45678\",\n                \"age\": 16,\n                \"isFrozen\": false,\n                \"role\": {\n                    \"id\": 1,\n                    \"name\": \"Клиент\"\n                }\n            }\n        },\n        \"product\": {\n            \"id\": 2,\n            \"name\": \"Тушь Volum Express\",\n            \"price\": 650,\n            \"description\": \"Объёмная тушь для ресниц\",\n            \"discountPercent\": 20,\n            \"rating\": 4.5,\n            \"isFrozen\": false,\n            \"manufacturer\": {\n                \"id\": 2,\n                \"name\": \"Maybelline\",\n                \"country\": {\n                    \"id\": 2,\n                    \"name\": \"США\"\n                }\n            },\n            \"productType\": {\n                \"id\": 2,\n                \"name\": \"Тушь\"\n            }\n        }\n    },\n    {\n        \"id\": 3,\n        \"quantity\": 1,\n        \"basket\": {\n            \"id\": 1,\n            \"user\": {\n                \"id\": 7,\n                \"name\": \"Никуся\",\n                \"lastName\": \"Бабская\",\n                \"phone\": \"79007778899\",\n                \"login\": \"morozov@mail.ru\",\n                \"password\": \"45678\",\n                \"age\": 16,\n                \"isFrozen\": false,\n                \"role\": {\n                    \"id\": 1,\n                    \"name\": \"Клиент\"\n                }\n            }\n        },\n        \"product\": {\n            \"id\": 3,\n            \"name\": \"Крем облепиховый\",\n            \"price\": 380,\n            \"description\": \"Питательный крем на основе облепихи\",\n            \"discountPercent\": 0,\n            \"rating\": 4.6,\n            \"isFrozen\": false,\n            \"manufacturer\": {\n                \"id\": 3,\n                \"name\": \"Natura Siberica\",\n                \"country\": {\n                    \"id\": 3,\n                    \"name\": \"Россия\"\n                }\n            },\n            \"productType\": {\n                \"id\": 3,\n                \"name\": \"Крем для лица\"\n            }\n        }\n    },\n    {\n        \"id\": 4,\n        \"quantity\": 3,\n        \"basket\": {\n            \"id\": 2,\n            \"user\": {\n                \"id\": 8,\n                \"name\": \"Мария\",\n                \"lastName\": \"Бабская\",\n                \"phone\": \"79001234566\",\n                \"login\": \"masha@mail.ru\",\n                \"password\": \"87654\",\n                \"age\": 19,\n                \"isFrozen\": false,\n                \"role\": {\n                    \"id\": 1,\n                    \"name\": \"Клиент\"\n                }\n            }\n        },\n        \"product\": {\n            \"id\": 4,\n            \"name\": \"Лак Essie №201\",\n            \"price\": 520,\n            \"description\": \"Стойкий лак нюдового оттенка\",\n            \"discountPercent\": 10,\n            \"rating\": 4.7,\n            \"isFrozen\": false,\n            \"manufacturer\": {\n                \"id\": 2,\n                \"name\": \"Maybelline\",\n                \"country\": {\n                    \"id\": 2,\n                    \"name\": \"США\"\n                }\n            },\n            \"productType\": {\n                \"id\": 4,\n                \"name\": \"Лак для ногтей\"\n            }\n        }\n    },\n    {\n        \"id\": 5,\n        \"quantity\": 2,\n        \"basket\": {\n            \"id\": 2,\n            \"user\": {\n                \"id\": 8,\n                \"name\": \"Мария\",\n                \"lastName\": \"Бабская\",\n                \"phone\": \"79001234566\",\n                \"login\": \"masha@mail.ru\",\n                \"password\": \"87654\",\n                \"age\": 19,\n                \"isFrozen\": false,\n                \"role\": {\n                    \"id\": 1,\n                    \"name\": \"Клиент\"\n                }\n            }\n        },\n        \"product\": {\n            \"id\": 5,\n            \"name\": \"Маска Gliss Kur\",\n            \"price\": 390,\n            \"description\": \"Интенсивное восстановление волос\",\n            \"discountPercent\": 25,\n            \"rating\": 4.3,\n            \"isFrozen\": false,\n            \"manufacturer\": {\n                \"id\": 4,\n                \"name\": \"Schwarzkopf\",\n                \"country\": {\n                    \"id\": 4,\n                    \"name\": \"Германия\"\n                }\n            },\n            \"productType\": {\n                \"id\": 5,\n                \"name\": \"Маска для волос\"\n            }\n        }\n    },\n    {\n        \"id\": 6,\n        \"quantity\": 1,\n        \"basket\": {\n            \"id\": 2,\n            \"user\": {\n                \"id\": 8,\n                \"name\": \"Мария\",\n                \"lastName\": \"Бабская\",\n                \"phone\": \"79001234566\",\n                \"login\": \"masha@mail.ru\",\n                \"password\": \"87654\",\n                \"age\": 19,\n                \"isFrozen\": false,\n                \"role\": {\n                    \"id\": 1,\n                    \"name\": \"Клиент\"\n                }\n            }\n        },\n        \"product\": {\n            \"id\": 6,\n            \"name\": \"Шампунь BC Bonacure\",\n            \"price\": 1200,\n            \"description\": \"Профессиональный шампунь для окрашенных волос\",\n            \"discountPercent\": 0,\n            \"rating\": 4.4,\n            \"isFrozen\": false,\n            \"manufacturer\": {\n                \"id\": 4,\n                \"name\": \"Schwarzkopf\",\n                \"country\": {\n                    \"id\": 4,\n                    \"name\": \"Германия\"\n                }\n            },\n            \"productType\": {\n                \"id\": 1,\n                \"name\": \"Шампунь\"\n            }\n        }\n    },\n    {\n        \"id\": 7,\n        \"quantity\": 1,\n        \"basket\": {\n            \"id\": 3,\n            \"user\": {\n                \"id\": 9,\n                \"name\": \"Лера\",\n                \"lastName\": \"Бабская\",\n                \"phone\": \"79008765631\",\n                \"login\": \"lero@mail.ru\",\n                \"password\": \"56789\",\n                \"age\": 18,\n                \"isFrozen\": false,\n                \"role\": {\n                    \"id\": 1,\n                    \"name\": \"Клиент\"\n                }\n            }\n        },\n        \"product\": {\n            \"id\": 1,\n            \"name\": \"Шампунь Elseve\",\n            \"price\": 450,\n            \"description\": \"Увлажняющий шампунь для сухих волос\",\n            \"discountPercent\": 0,\n            \"rating\": 4.2,\n            \"isFrozen\": false,\n            \"manufacturer\": {\n                \"id\": 1,\n                \"name\": \"L'Oréal\",\n                \"country\": {\n                    \"id\": 1,\n                    \"name\": \"Франция\"\n                }\n            },\n            \"productType\": {\n                \"id\": 1,\n                \"name\": \"Шампунь\"\n            }\n        }\n    },\n    {\n        \"id\": 8,\n        \"quantity\": 3,\n        \"basket\": {\n            \"id\": 3,\n            \"user\": {\n                \"id\": 9,\n                \"name\": \"Лера\",\n                \"lastName\": \"Бабская\",\n                \"phone\": \"79008765631\",\n                \"login\": \"lero@mail.ru\",\n                \"password\": \"56789\",\n                \"age\": 18,\n                \"isFrozen\": false,\n                \"role\": {\n                    \"id\": 1,\n                    \"name\": \"Клиент\"\n                }\n            }\n        },\n        \"product\": {\n            \"id\": 2,\n            \"name\": \"Тушь Volum Express\",\n            \"price\": 650,\n            \"description\": \"Объёмная тушь для ресниц\",\n            \"discountPercent\": 20,\n            \"rating\": 4.5,\n            \"isFrozen\": false,\n            \"manufacturer\": {\n                \"id\": 2,\n                \"name\": \"Maybelline\",\n                \"country\": {\n                    \"id\": 2,\n                    \"name\": \"США\"\n                }\n            },\n            \"productType\": {\n                \"id\": 2,\n                \"name\": \"Тушь\"\n            }\n        }\n    },\n    {\n        \"id\": 9,\n        \"quantity\": 1,\n        \"basket\": {\n            \"id\": 3,\n            \"user\": {\n                \"id\": 9,\n                \"name\": \"Лера\",\n                \"lastName\": \"Бабская\",\n                \"phone\": \"79008765631\",\n                \"login\": \"lero@mail.ru\",\n                \"password\": \"56789\",\n                \"age\": 18,\n                \"isFrozen\": false,\n                \"role\": {\n                    \"id\": 1,\n                    \"name\": \"Клиент\"\n                }\n            }\n        },\n        \"product\": {\n            \"id\": 3,\n            \"name\": \"Крем облепиховый\",\n            \"price\": 380,\n            \"description\": \"Питательный крем на основе облепихи\",\n            \"discountPercent\": 0,\n            \"rating\": 4.6,\n            \"isFrozen\": false,\n            \"manufacturer\": {\n                \"id\": 3,\n                \"name\": \"Natura Siberica\",\n                \"country\": {\n                    \"id\": 3,\n                    \"name\": \"Россия\"\n                }\n            },\n            \"productType\": {\n                \"id\": 3,\n                \"name\": \"Крем для лица\"\n            }\n        }\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "GetBasket",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "##### GET-запрос для получения корзины пользователей"
+          },
+          "response": [
+            {
+              "name": "GetBasket",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/baskets",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "baskets"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 02 Apr 2026 11:54:06 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"user\": {\n            \"id\": 7,\n            \"name\": \"Никуся\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79007778899\",\n            \"login\": \"morozov@mail.ru\",\n            \"password\": \"45678\",\n            \"age\": 16,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        }\n    },\n    {\n        \"id\": 2,\n        \"user\": {\n            \"id\": 8,\n            \"name\": \"Мария\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79001234566\",\n            \"login\": \"masha@mail.ru\",\n            \"password\": \"87654\",\n            \"age\": 19,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        }\n    },\n    {\n        \"id\": 3,\n        \"user\": {\n            \"id\": 9,\n            \"name\": \"Лера\",\n            \"lastName\": \"Бабская\",\n            \"phone\": \"79008765631\",\n            \"login\": \"lero@mail.ru\",\n            \"password\": \"56789\",\n            \"age\": 18,\n            \"isFrozen\": false,\n            \"role\": {\n                \"id\": 1,\n                \"name\": \"Клиент\"\n            }\n        }\n    }\n]"
+            }
+          ]
+        }
+      ],
+      "description": "##### Папка с GET-запросами(Read) для получения данных из БД. Данные запросы работают только после аутентификации и авторизации пользователя."
+    },
+    {
+      "name": "Post",
+      "item": [
+        {
+          "name": "PostUsers",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n        \"name\": \"Максим\",\r\n        \"lastName\": \"Лобочкин\",\r\n        \"phone\": \"78996767676\",\r\n        \"login\": \"lobochkin@mail.ru\",\r\n        \"password\": \"676767\",\r\n        \"age\": 19,\r\n        \"isFrozen\": false,\r\n        \"role\": {\r\n            \"id\": 3,\r\n            \"name\": \"Менеджер\"\r\n        }\r\n    }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/post/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "post",
+                "users"
+              ]
+            },
+            "description": "##### POST-запрос для добавления нового пользователя"
+          },
+          "response": [
+            {
+              "name": "PostUsers",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n        \"name\": \"Максим\",\r\n        \"lastName\": \"Лобочкин\",\r\n        \"phone\": \"78996767676\",\r\n        \"login\": \"lobochkin@mail.ru\",\r\n        \"password\": \"676767\",\r\n        \"age\": 19,\r\n        \"isFrozen\": false,\r\n        \"role\": {\r\n            \"id\": 3,\r\n            \"name\": \"Менеджер\"\r\n        }\r\n    }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/post/users",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "post",
+                    "users"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 08:53:56 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 12,\n    \"name\": \"Максим\",\n    \"lastName\": \"Лобочкин\",\n    \"phone\": \"78996767676\",\n    \"login\": \"lobochkin@mail.ru\",\n    \"password\": \"676767\",\n    \"age\": 19,\n    \"isFrozen\": false,\n    \"role\": {\n        \"id\": 3,\n        \"name\": \"Менеджер\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "PostProducts",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n        \"name\": \"Шампунь Shauma\",\r\n        \"price\": 450,\r\n        \"description\": \"Увлажняющий шампунь для волос ГВВ\",\r\n        \"discountPercent\": 0,\r\n        \"rating\": 4.6,\r\n        \"isFrozen\": false,\r\n        \"manufacturer\": {\r\n            \"id\": 1,\r\n            \"name\": \"L'Oréal\",\r\n            \"country\": {\r\n                \"id\": 1,\r\n                \"name\": \"Франция\"\r\n            }\r\n        },\r\n        \"productType\": {\r\n            \"id\": 1,\r\n            \"name\": \"Шампунь\"\r\n        }\r\n    }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/post/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "post",
+                "products"
+              ]
+            },
+            "description": "##### POST-запрос для добавления нового товара"
+          },
+          "response": [
+            {
+              "name": "PostProducts",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n        \"name\": \"Шампунь Shauma\",\r\n        \"price\": 450,\r\n        \"description\": \"Увлажняющий шампунь для волос ГВВ\",\r\n        \"discountPercent\": 0,\r\n        \"rating\": 4.6,\r\n        \"isFrozen\": false,\r\n        \"manufacturer\": {\r\n            \"id\": 1,\r\n            \"name\": \"L'Oréal\",\r\n            \"country\": {\r\n                \"id\": 1,\r\n                \"name\": \"Франция\"\r\n            }\r\n        },\r\n        \"productType\": {\r\n            \"id\": 1,\r\n            \"name\": \"Шампунь\"\r\n        }\r\n    }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/post/products",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "post",
+                    "products"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 08:49:47 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 8,\n    \"name\": \"Шампунь Shauma\",\n    \"price\": 450,\n    \"description\": \"Увлажняющий шампунь для волос ГВВ\",\n    \"discountPercent\": 0,\n    \"rating\": 4.6,\n    \"isFrozen\": false,\n    \"manufacturer\": {\n        \"id\": 1,\n        \"name\": \"L'Oréal\",\n        \"country\": {\n            \"id\": 1,\n            \"name\": \"Франция\"\n        }\n    },\n    \"productType\": {\n        \"id\": 1,\n        \"name\": \"Шампунь\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "PostOrders",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 5,\r\n    \"date\": \"2025-05-13T12:45:12\",\r\n    \"deliveryDate\": \"2025-04-16\",\r\n    \"payment\": {\r\n        \"id\": 2,\r\n        \"payment\": \"Картой\"\r\n    },\r\n    \"status\": {\r\n        \"id\": 2,\r\n        \"name\": \"В доставке\"\r\n    },\r\n    \"user\": {\r\n        \"id\": 8,\r\n        \"name\": null,\r\n        \"lastName\": null,\r\n        \"phone\": null,\r\n        \"login\": null,\r\n        \"password\": null,\r\n        \"age\": null,\r\n        \"isFrozen\": false,\r\n        \"role\": null\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/post/orders",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "post",
+                "orders"
+              ]
+            },
+            "description": "##### POST-запрос для добавления нового заказа"
+          },
+          "response": [
+            {
+              "name": "PostOrders",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n        \"date\": \"2025-05-13T12:45:12\",\r\n        \"deliveryDate\": \"2025-04-16\",\r\n        \"payment\": {\r\n            \"id\": 2,\r\n            \"payment\": \"Картой\"\r\n        },\r\n        \"status\": {\r\n            \"id\": 2,\r\n            \"name\": \"В доставке\"\r\n        },\r\n        \"user\": {\r\n            \"id\": 8\r\n        }\r\n    }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/post/orders",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "post",
+                    "orders"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 08:51:35 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 5,\n    \"date\": \"2025-05-13T12:45:12\",\n    \"deliveryDate\": \"2025-04-16\",\n    \"payment\": {\n        \"id\": 2,\n        \"payment\": \"Картой\"\n    },\n    \"status\": {\n        \"id\": 2,\n        \"name\": \"В доставке\"\n    },\n    \"user\": {\n        \"id\": 8,\n        \"name\": null,\n        \"lastName\": null,\n        \"phone\": null,\n        \"login\": null,\n        \"password\": null,\n        \"age\": null,\n        \"isFrozen\": false,\n        \"role\": null\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "PostRecords",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": 11,\r\n    \"date\": \"2025-04-10T10:00:00\",\r\n    \"comment\": \"Хотят цвет тиффани\",\r\n    \"client\": {\r\n        \"id\": 7,\r\n        \"name\": \"Никуся\",\r\n        \"lastName\": \"Бабская\",\r\n        \"phone\": \"79007778899\",\r\n        \"login\": \"morozov@mail.ru\",\r\n        \"password\": \"45678\",\r\n        \"age\": 16,\r\n        \"isFrozen\": false,\r\n        \"role\": {\r\n            \"id\": 1,\r\n            \"name\": \"Клиент\"\r\n        }\r\n    },\r\n    \"master\": {\r\n        \"id\": 2,\r\n        \"name\": \"Дмитрий\",\r\n        \"lastName\": \"Петров\",\r\n        \"phone\": \"79002223344\",\r\n        \"login\": \"petrov@mail.ru\",\r\n        \"password\": \"54321\",\r\n        \"age\": 34,\r\n        \"isFrozen\": false,\r\n        \"role\": {\r\n            \"id\": 2,\r\n            \"name\": \"Мастер\"\r\n        }\r\n    },\r\n    \"payment\": {\r\n        \"id\": 1,\r\n        \"payment\": \"Наличными при получении\"\r\n    },\r\n    \"serviceType\": {\r\n        \"id\": 1,\r\n        \"name\": \"Маникюр классический\",\r\n        \"price\": 1200\r\n    },\r\n    \"status\": {\r\n        \"id\": 1,\r\n        \"name\": \"Выполнено\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/post/records",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "post",
+                "records"
+              ]
+            },
+            "description": "##### POST-запрос для добавления новой записи"
+          },
+          "response": [
+            {
+              "name": "PostRecords",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n        \"date\": \"2025-04-10T10:00:00\",\r\n        \"comment\": \"Хотят цвет тиффани\",\r\n        \"client\": {\r\n            \"id\": 7,\r\n            \"name\": \"Никуся\",\r\n            \"lastName\": \"Бабская\",\r\n            \"phone\": \"79007778899\",\r\n            \"login\": \"morozov@mail.ru\",\r\n            \"password\": \"45678\",\r\n            \"age\": 16,\r\n            \"isFrozen\": false,\r\n            \"role\": {\r\n                \"id\": 1,\r\n                \"name\": \"Клиент\"\r\n            }\r\n        },\r\n        \"master\": {\r\n            \"id\": 2,\r\n            \"name\": \"Дмитрий\",\r\n            \"lastName\": \"Петров\",\r\n            \"phone\": \"79002223344\",\r\n            \"login\": \"petrov@mail.ru\",\r\n            \"password\": \"54321\",\r\n            \"age\": 34,\r\n            \"isFrozen\": false,\r\n            \"role\": {\r\n                \"id\": 2,\r\n                \"name\": \"Мастер\"\r\n            }\r\n        },\r\n        \"payment\": {\r\n            \"id\": 1,\r\n            \"payment\": \"Наличными при получении\"\r\n        },\r\n        \"serviceType\": {\r\n            \"id\": 1,\r\n            \"name\": \"Маникюр классический\",\r\n            \"price\": 1200\r\n        },\r\n        \"status\": {\r\n            \"id\": 1,\r\n            \"name\": \"Выполнено\"\r\n        }\r\n    }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/post/records",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "post",
+                    "records"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 08:53:25 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 11,\n    \"date\": \"2025-04-10T10:00:00\",\n    \"comment\": \"Хотят цвет тиффани\",\n    \"client\": {\n        \"id\": 7,\n        \"name\": \"Никуся\",\n        \"lastName\": \"Бабская\",\n        \"phone\": \"79007778899\",\n        \"login\": \"morozov@mail.ru\",\n        \"password\": \"45678\",\n        \"age\": 16,\n        \"isFrozen\": false,\n        \"role\": {\n            \"id\": 1,\n            \"name\": \"Клиент\"\n        }\n    },\n    \"master\": {\n        \"id\": 2,\n        \"name\": \"Дмитрий\",\n        \"lastName\": \"Петров\",\n        \"phone\": \"79002223344\",\n        \"login\": \"petrov@mail.ru\",\n        \"password\": \"54321\",\n        \"age\": 34,\n        \"isFrozen\": false,\n        \"role\": {\n            \"id\": 2,\n            \"name\": \"Мастер\"\n        }\n    },\n    \"payment\": {\n        \"id\": 1,\n        \"payment\": \"Наличными при получении\"\n    },\n    \"serviceType\": {\n        \"id\": 1,\n        \"name\": \"Маникюр классический\",\n        \"price\": 1200\n    },\n    \"status\": {\n        \"id\": 1,\n        \"name\": \"Выполнено\"\n    }\n}"
+            }
+          ]
+        }
+      ],
+      "description": "##### Папка с POST-запросами(Create) для добавления данных в БД. Данные запросы работают только после аутентификации и авторизации пользователя."
+    },
+    {
+      "name": "Put",
+      "item": [
+        {
+          "name": "PutUsers",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/put/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "put",
+                "users"
+              ]
+            },
+            "description": "##### PUT-запрос для обновления данных о пользователе"
+          },
+          "response": [
+            {
+              "name": "PutUsers",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\": 12,\r\n    \"name\": \"Максим\",\r\n    \"lastName\": \"Лобочкин\",\r\n    \"phone\": \"78996767676\",\r\n    \"login\": \"lobochkin@mail.ru\",\r\n    \"password\": \"676767\",\r\n    \"age\": 19,\r\n    \"isFrozen\": true,\r\n    \"role\": {\r\n        \"id\": 3,\r\n        \"name\": \"Менеджер\"\r\n    }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/put/users",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "put",
+                    "users"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 08:56:11 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 12,\n    \"name\": \"Максим\",\n    \"lastName\": \"Лобочкин\",\n    \"phone\": \"78996767676\",\n    \"login\": \"lobochkin@mail.ru\",\n    \"password\": \"676767\",\n    \"age\": 19,\n    \"isFrozen\": true,\n    \"role\": {\n        \"id\": 3,\n        \"name\": \"Менеджер\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "PutOrders",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/put/orders",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "put",
+                "orders"
+              ]
+            },
+            "description": "##### PUT-запрос для обновления данных заказа"
+          },
+          "response": [
+            {
+              "name": "PutOrders",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\": 5,\r\n    \"date\": \"2025-05-13T12:45:12\",\r\n    \"deliveryDate\": \"2025-04-16\",\r\n    \"payment\": {\r\n        \"id\": 2,\r\n        \"payment\": \"Картой\"\r\n    },\r\n    \"status\": {\r\n        \"id\": 2,\r\n        \"name\": \"В доставке\"\r\n    },\r\n    \"user\": {\r\n        \"id\": 8,\r\n        \"name\": \"Мария\",\r\n        \"lastName\": \"Бабская\",\r\n        \"phone\": \"79001234566\",\r\n        \"login\": \"masha@mail.ru\",\r\n        \"password\": \"87654\",\r\n        \"age\": 19,\r\n        \"isFrozen\": false,\r\n        \"role\": {\r\n            \"id\": 1,\r\n            \"name\": \"Клиент\"\r\n        }\r\n    }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/put/orders",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "put",
+                    "orders"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 09:02:49 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 5,\n    \"date\": \"2025-05-13T12:45:12\",\n    \"deliveryDate\": \"2025-04-16\",\n    \"payment\": {\n        \"id\": 2,\n        \"payment\": \"Картой\"\n    },\n    \"status\": {\n        \"id\": 2,\n        \"name\": \"В доставке\"\n    },\n    \"user\": {\n        \"id\": 8,\n        \"name\": \"Мария\",\n        \"lastName\": \"Бабская\",\n        \"phone\": \"79001234566\",\n        \"login\": \"masha@mail.ru\",\n        \"password\": \"87654\",\n        \"age\": 19,\n        \"isFrozen\": false,\n        \"role\": {\n            \"id\": 1,\n            \"name\": \"Клиент\"\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "PutRecords",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/put/records",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "put",
+                "records"
+              ]
+            },
+            "description": "##### PUT-запрос для обновления данных записи"
+          },
+          "response": [
+            {
+              "name": "PutRecords",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\": 11,\r\n    \"date\": \"2025-04-10T10:00:00\",\r\n    \"comment\": \"Хотят цвет тиффани\",\r\n    \"client\": {\r\n        \"id\": 7,\r\n        \"name\": \"Никуся\",\r\n        \"lastName\": \"Бабская\",\r\n        \"phone\": \"79007778899\",\r\n        \"login\": \"morozov@mail.ru\",\r\n        \"password\": \"45678\",\r\n        \"age\": 16,\r\n        \"isFrozen\": false,\r\n        \"role\": {\r\n            \"id\": 1,\r\n            \"name\": \"Клиент\"\r\n        }\r\n    },\r\n    \"master\": {\r\n        \"id\": 2,\r\n        \"name\": \"Дмитрий\",\r\n        \"lastName\": \"Петров\",\r\n        \"phone\": \"79002223344\",\r\n        \"login\": \"petrov@mail.ru\",\r\n        \"password\": \"54321\",\r\n        \"age\": 34,\r\n        \"isFrozen\": false,\r\n        \"role\": {\r\n            \"id\": 2,\r\n            \"name\": \"Мастер\"\r\n        }\r\n    },\r\n    \"payment\": {\r\n        \"id\": 2,\r\n        \"payment\": \"Картой\"\r\n    },\r\n    \"serviceType\": {\r\n        \"id\": 1,\r\n        \"name\": \"Маникюр классический\",\r\n        \"price\": 1200\r\n    },\r\n    \"status\": {\r\n        \"id\": 1,\r\n        \"name\": \"Выполнено\"\r\n    }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/put/records",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "put",
+                    "records"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 09:01:08 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 11,\n    \"date\": \"2025-04-10T10:00:00\",\n    \"comment\": \"Хотят цвет тиффани\",\n    \"client\": {\n        \"id\": 7,\n        \"name\": \"Никуся\",\n        \"lastName\": \"Бабская\",\n        \"phone\": \"79007778899\",\n        \"login\": \"morozov@mail.ru\",\n        \"password\": \"45678\",\n        \"age\": 16,\n        \"isFrozen\": false,\n        \"role\": {\n            \"id\": 1,\n            \"name\": \"Клиент\"\n        }\n    },\n    \"master\": {\n        \"id\": 2,\n        \"name\": \"Дмитрий\",\n        \"lastName\": \"Петров\",\n        \"phone\": \"79002223344\",\n        \"login\": \"petrov@mail.ru\",\n        \"password\": \"54321\",\n        \"age\": 34,\n        \"isFrozen\": false,\n        \"role\": {\n            \"id\": 2,\n            \"name\": \"Мастер\"\n        }\n    },\n    \"payment\": {\n        \"id\": 2,\n        \"payment\": \"Картой\"\n    },\n    \"serviceType\": {\n        \"id\": 1,\n        \"name\": \"Маникюр классический\",\n        \"price\": 1200\n    },\n    \"status\": {\n        \"id\": 1,\n        \"name\": \"Выполнено\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "PutProducts",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/put/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "put",
+                "products"
+              ]
+            },
+            "description": "##### PUT-запрос для обновления данных о продукте"
+          },
+          "response": [
+            {
+              "name": "PutProducts",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"id\": 8,\r\n    \"name\": \"Шампунь Shauma\",\r\n    \"price\": 450,\r\n    \"description\": \"Увлажняющий шампунь для волос ГВВ\",\r\n    \"discountPercent\": 10,\r\n    \"rating\": 4.6,\r\n    \"isFrozen\": false,\r\n    \"manufacturer\": {\r\n        \"id\": 1,\r\n        \"name\": \"L'Oréal\",\r\n        \"country\": {\r\n            \"id\": 1,\r\n            \"name\": \"Франция\"\r\n        }\r\n    },\r\n    \"productType\": {\r\n        \"id\": 1,\r\n        \"name\": \"Шампунь\"\r\n    }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5000/api/put/products",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "put",
+                    "products"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 08:59:31 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 8,\n    \"name\": \"Шампунь Shauma\",\n    \"price\": 450,\n    \"description\": \"Увлажняющий шампунь для волос ГВВ\",\n    \"discountPercent\": 10,\n    \"rating\": 4.6,\n    \"isFrozen\": false,\n    \"manufacturer\": {\n        \"id\": 1,\n        \"name\": \"L'Oréal\",\n        \"country\": {\n            \"id\": 1,\n            \"name\": \"Франция\"\n        }\n    },\n    \"productType\": {\n        \"id\": 1,\n        \"name\": \"Шампунь\"\n    }\n}"
+            }
+          ]
+        }
+      ],
+      "description": "##### Папка с PUT-запросами(Update) для обновления данных в БД. Данные запросы работают только после аутентификации и авторизиции пользователя в приложении."
+    },
+    {
+      "name": "Delete",
+      "item": [
+        {
+          "name": "DeleteUsers",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/delete/users?Id=0",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "delete",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "Id",
+                  "value": "0",
+                  "type": "text"
+                }
+              ]
+            },
+            "description": "##### DELETE-запрос для удаления пользователя по ID"
+          },
+          "response": [
+            {
+              "name": "DeleteUsers",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/delete/users?Id=0",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "delete",
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "key": "Id",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Length",
+                  "value": "0"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 03 Apr 2026 11:21:23 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "DeleteOrders",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/delete/orders",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "delete",
+                "orders"
+              ]
+            },
+            "description": "##### DELETE-запрос по удалению заказа по ID"
+          },
+          "response": [
+            {
+              "name": "DeleteOrders",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/delete/orders?ID=2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "delete",
+                    "orders"
+                  ],
+                  "query": [
+                    {
+                      "key": "ID",
+                      "value": "2",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Length",
+                  "value": "0"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 09:29:37 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "DeleteProducts",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/delete/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "delete",
+                "products"
+              ]
+            },
+            "description": "##### DELETE-запрос по удалению товара по ID"
+          },
+          "response": [
+            {
+              "name": "DeleteProducts",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/delete/products?ID=8",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "delete",
+                    "products"
+                  ],
+                  "query": [
+                    {
+                      "key": "ID",
+                      "value": "8",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Length",
+                  "value": "0"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 09:26:30 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "DeleteRecords",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/delete/records",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "delete",
+                "records"
+              ]
+            },
+            "description": "##### DELETE-запрос по удалению записи по ID"
+          },
+          "response": [
+            {
+              "name": "DeleteRecords",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5000/api/delete/records?ID=10",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5000",
+                  "path": [
+                    "api",
+                    "delete",
+                    "records"
+                  ],
+                  "query": [
+                    {
+                      "key": "ID",
+                      "value": "10",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Length",
+                  "value": "0"
+                },
+                {
+                  "key": "Date",
+                  "value": "Mon, 06 Apr 2026 09:27:03 GMT"
+                },
+                {
+                  "key": "Server",
+                  "value": "Kestrel"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ],
+      "description": "##### Папка с DELETE-запросами(Delete) для удаления данных из БД по ID. Данные запросы работают только после аутентификации и авторизации пользователя в приложении."
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiaXZhbm92YUBtYWlsLnJ1IiwiZXhwIjoxODA2NjY0NjM5LCJpc3MiOiJNYXNobyIsImF1ZCI6IlZhdmEifQ.ewhjrd8ubmNJFF1B3G3m-o70nP88xaBmTBF74w0wGSQ",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
