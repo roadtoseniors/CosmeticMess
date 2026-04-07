@@ -4,8 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:wpfLikeAvaloniaNavigation="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="CosmeticMess.Views.Desktop.AuthDesktop">
+             x:Class="CosmeticMess.Views.Desktop.AuthDesktop" Background="#f6f6f6" Foreground="#8785a2" FontFamily="Georgia">
     <Grid>
-        
+        <Border BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8" Orientation="Vertical">
+                <TextBlock Text="Вход в аккаунт" FontSize="20"/>
+                <TextBox Watermark="Введите логин"/>
+                <TextBox Watermark="Введите пароль"/>
+                <Button Content="Войти" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="150" Background="#ffe2e2" Foreground="#8785a2"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </wpfLikeAvaloniaNavigation:Page>

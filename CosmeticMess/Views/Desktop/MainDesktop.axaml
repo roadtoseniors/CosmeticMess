@@ -4,13 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:wpfLikeAvaloniaNavigation="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="CosmeticMess.Views.Desktop.MainDesktop" Background="#f6f6f6" Foreground="#8785a2">
+             x:Class="CosmeticMess.Views.Desktop.MainDesktop" Background="#f6f6f6" Foreground="#8785a2" FontFamily="Georgia">
     <Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="*, Auto">
         <Border Grid.Row="0" Grid.Column="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
             <StackPanel Orientation="Horizontal" Spacing="5" Margin="10,10,10,10">
                 <TextBlock Text="Главная страница" FontSize="20" FontFamily="Georgia" Margin="5"/>
-                <Button Content="Вход" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Authorization"/>
-                <Button Content="Регистрация" Background="LightGreen" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Registration"/>
+                <Button Content="Вход" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Authorization" Click="Authorization_OnClick"/>
+                <Button Content="Регистрация" Background="LightGreen" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Registration" Click="Registration_OnClick"/>
             </StackPanel>
         </Border>
         
@@ -25,7 +25,36 @@
         </Border>
         
         <Border Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
-            
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding Users}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#ffc7c7" BorderThickness="2" CornerRadius="6" Margin="10,10,10,10">
+                                 <StackPanel Margin="10,10,10,10">
+                                     <StackPanel Orientation="Horizontal" Spacing="5">
+                                         <TextBlock Text="{Binding Name}" FontSize="20"/>
+                                         <TextBlock Text="{Binding LastName}" FontSize="20"/>
+                                     </StackPanel>
+                                     <StackPanel>
+                                         <ItemsControl ItemsSource="{Binding MasterServices}">
+                                             <ItemsControl.ItemsPanel>
+                                                 <ItemsPanelTemplate>
+                                                     <WrapPanel Orientation="Horizontal" ItemSpacing="5" Margin="5,5,5,5"/>
+                                                 </ItemsPanelTemplate>
+                                             </ItemsControl.ItemsPanel>
+                                             <ItemsControl.ItemTemplate>
+                                                 <DataTemplate>
+                                                     <Button Background="#ffe2e2" Foreground="#8785a2" Content="{Binding ServiceType.Name}" FontSize="15"/>
+                                                 </DataTemplate>
+                                             </ItemsControl.ItemTemplate>
+                                         </ItemsControl>
+                                     </StackPanel>
+                                 </StackPanel>   
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Border>
     </Grid>
 </wpfLikeAvaloniaNavigation:Page>

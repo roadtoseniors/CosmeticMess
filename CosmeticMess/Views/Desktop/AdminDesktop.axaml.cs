@@ -1,10 +1,11 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using WpfLikeAvaloniaNavigation;
 
 namespace CosmeticMess.Views.Desktop;
 
-public partial class AdminDesktop : UserControl
+public partial class AdminDesktop : Page
 {
     public AdminDesktop()
     {

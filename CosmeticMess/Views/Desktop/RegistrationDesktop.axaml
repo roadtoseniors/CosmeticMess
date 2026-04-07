@@ -4,14 +4,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:wpfLikeAvaloniaNavigation="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="CosmeticMess.Views.Desktop.RegistrationDesktop">
+             x:Class="CosmeticMess.Views.Desktop.RegistrationDesktop" Background="#f6f6f6" Foreground="#8785a2" FontFamily="Georgia">
     <Grid>
-        <Border>
-            <StackPanel Orientation="Vertical" Spacing="6">
-                <TextBox Watermark="Введите имя"/>
-                <TextBox Watermark="Введите фамилию"/>
-                <TextBox Watermark="Введите телефон"/>
-                <TextBox Watermark="Введите возраст"/>
+        <Border BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8" Orientation="Vertical">
+                <TextBlock Text="Регистрация" FontSize="20" HorizontalAlignment="Center"/>
+                <TextBox Watermark="Введите имя" x:Name="Name"/>
+                <TextBox Watermark="Введите фамилию" x:Name="LastName"/>
+                <TextBox Watermark="Введите телефон" x:Name="Number"/>
+                <TextBox Watermark="Введите возраст" x:Name="Age"/>
+                <TextBox Watermark="Введите логин" x:Name="Login"/>
+                <TextBox Watermark="Введите пароль" x:Name="Password"/>
+                <Button Content="Зарегистрироваться" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="150" Background="#ffe2e2" Foreground="#8785a2" x:Name="Registration"/>
             </StackPanel>
         </Border>
     </Grid>

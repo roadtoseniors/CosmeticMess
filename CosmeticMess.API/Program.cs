@@ -55,11 +55,11 @@ app.MapPost("/auth/login", (AuthData data, MyDbContext cnt) =>
     }
 });
 
-app.MapGet("/api/users", [Authorize](MyDbContext cnt) =>{
+app.MapGet("/api/users", (MyDbContext cnt) =>{
     return cnt.Users.ToList();
 });
 
-app.MapGet("/api/servicetypes", [Authorize](MyDbContext cnt) =>
+app.MapGet("/api/servicetypes", (MyDbContext cnt) =>
 {
     return cnt.ServiceTypes.ToList();
 });
@@ -109,7 +109,7 @@ app.MapGet("/api/orders", [Authorize](MyDbContext cnt) =>
     return cnt.Orders.ToList();
 });
 
-app.MapGet("/api/masterservices", [Authorize](MyDbContext cnt) =>
+app.MapGet("/api/masterservices", (MyDbContext cnt) =>
 {
     return cnt.MasterServices.ToList();
 });
