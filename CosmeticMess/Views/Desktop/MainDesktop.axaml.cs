@@ -58,4 +58,14 @@ public partial class MainDesktop : Page
             Users.Add(u);
         }
     }
+
+    private void AdminPanel_OnClick(object? sender, RoutedEventArgs e)
+    {
+        NavigationService.Navigate(new AdminDesktop());
+    }
+
+    private void Account_OnClick(object? sender, RoutedEventArgs e)
+    {
+        NavigationService.Navigate(new AccountDesktop());
+    }
 }

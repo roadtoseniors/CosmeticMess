@@ -8,9 +8,11 @@
     <Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="*, Auto">
         <Border Grid.Row="0" Grid.Column="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
             <StackPanel Orientation="Horizontal" Spacing="5" Margin="10,10,10,10">
-                <TextBlock Text="Главная страница" FontSize="20" FontFamily="Georgia" Margin="5"/>
+                <TextBlock Text="Главная страница" FontSize="20" FontFamily="Georgia" Margin="5" FontWeight="SemiBold"/>
                 <Button Content="Вход" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Authorization" Click="Authorization_OnClick"/>
                 <Button Content="Регистрация" Background="LightGreen" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Registration" Click="Registration_OnClick"/>
+                <Button Content="Панель Админа" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="AdminPanel" Click="AdminPanel_OnClick"/>
+                <Button Content="Профиль" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Account" Click="Account_OnClick"/>
             </StackPanel>
         </Border>
         

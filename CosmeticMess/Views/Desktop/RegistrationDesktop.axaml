@@ -8,7 +8,7 @@
     <Grid>
         <Border BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="8" Orientation="Vertical">
-                <TextBlock Text="Регистрация" FontSize="20" HorizontalAlignment="Center"/>
+                <TextBlock Text="Регистрация" FontSize="20" HorizontalAlignment="Center" FontWeight="SemiBold"/>
                 <TextBox Watermark="Введите имя" x:Name="Name"/>
                 <TextBox Watermark="Введите фамилию" x:Name="LastName"/>
                 <TextBox Watermark="Введите телефон" x:Name="Number"/>

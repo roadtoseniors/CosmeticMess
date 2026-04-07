@@ -13,6 +13,6 @@ public partial class MasterService
     public int ServiceTypeId { get; set; }
 
     public virtual ServiceType ServiceType { get; set; } = null!;
-
+    [JsonIgnore]
     public virtual User User { get; set; } = null!;
 }

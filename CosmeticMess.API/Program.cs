@@ -64,7 +64,7 @@ app.MapGet("/api/servicetypes", (MyDbContext cnt) =>
     return cnt.ServiceTypes.ToList();
 });
 
-app.MapGet("/api/roles", [Authorize](MyDbContext cnt) =>
+app.MapGet("/api/roles", (MyDbContext cnt) =>
 {
     return cnt.Roles.ToList();
 });
