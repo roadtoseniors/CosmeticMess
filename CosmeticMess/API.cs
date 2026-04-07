@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using CosmeticMess.Entities;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace CosmeticMess;
 
@@ -263,6 +264,179 @@ internal class API
             return new List<MasterService>();
         }
     }
+
+    public async Task<User?> PostUsers(User user)
+    {
+        var json = JsonSerializer.Serialize(user);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5000/api/post/users");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created)
+        {
+            var result = JsonSerializer.Deserialize<User>(await response.Content.ReadAsStringAsync(), options);
+            return result;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public async Task<Product?> PostProducts(Product product)
+    {
+        var json = JsonSerializer.Serialize(product);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5000/api/post/products");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created)
+        {
+            var result = JsonSerializer.Deserialize<Product>(await response.Content.ReadAsStringAsync(), options);
+            return result;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public async Task<Order?> PostOrders(Order order)
+    {
+        var json = JsonSerializer.Serialize(order);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5000/api/post/orders");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created)
+        {
+            var result = JsonSerializer.Deserialize<Order>(await response.Content.ReadAsStringAsync(), options);
+            return result;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public async Task<Record?> PostRecords(Record record)
+    {
+        var json = JsonSerializer.Serialize(record);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5000/api/post/records");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.Created)
+        {
+            var result = JsonSerializer.Deserialize<Record>(await response.Content.ReadAsStringAsync(), options);
+            return result;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public async Task<User?> PutUsers(User user)
+    {
+        var json = JsonSerializer.Serialize(user);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Put, $"http://localhost:5000/api/put/users/{user.Id}");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var result = JsonSerializer.Deserialize<User>(await response.Content.ReadAsStringAsync(), options);
+            return result;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public async Task<Product?> PutProducts(Product product)
+    {
+        var json = JsonSerializer.Serialize(product);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Put, $"http://localhost:5000/api/put/products/{product.Id}");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var result = JsonSerializer.Deserialize<Product>(await response.Content.ReadAsStringAsync(), options);
+            return result;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public async Task<Record?> PutRecords(Record record)
+    {
+        var json = JsonSerializer.Serialize(record);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Put, $"http://localhost:5000/api/put/records/{record.Id}");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var result = JsonSerializer.Deserialize<Record>(await response.Content.ReadAsStringAsync(), options);
+            return result;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public async Task<Order?> PutOrders(Order order)
+    {
+        var json = JsonSerializer.Serialize(order);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Put, $"http://localhost:5000/api/put/orders/{order.Id}");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var result = JsonSerializer.Deserialize<Order>(await response.Content.ReadAsStringAsync(), options);
+            return result;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public async Task<bool> DeleteUsers(User user)
+    {
+        var request  = new HttpRequestMessage(HttpMethod.Delete, $"http://localhost:5000/api/delete/users/{user.Id}");
+        var response = await Client.SendAsync(request);
+        return response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.NoContent; 
+    }
+
+    public async Task<bool> DeleteOrders(Order order)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Delete, $"http://localhost:5000/api/delete/orders/{order.Id}");
+        var response = await Client.SendAsync(request);
+        return response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.NoContent;
+    }
+
+    public async Task<bool> DeleteRecords(Record record)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Delete, $"http://localhost:5000/api/delete/records/{record.Id}");
+        var response = await Client.SendAsync(request);
+        return response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.NoContent;
+    }
+
+    public async Task<bool> DeleteProducts(Product product)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Delete, $"http://localhost:5000/api/delete/products/{product.Id}");
+        var response = await Client.SendAsync(request);
+        return response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.NoContent;
+    }
+    
     
     public record AuthData(User user, string token);
 }
