@@ -15,7 +15,8 @@
                 <TextBox Watermark="Введите возраст" x:Name="Age"/>
                 <TextBox Watermark="Введите логин" x:Name="Login"/>
                 <TextBox Watermark="Введите пароль" x:Name="Password"/>
-                <Button Content="Зарегистрироваться" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="150" Background="#ffe2e2" Foreground="#8785a2" x:Name="Registration"/>
+                <Button Content="Зарегистрироваться" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="150" Background="#ffe2e2" Foreground="#8785a2" x:Name="Registration" Click="Registration_OnClick"/>
+                <Button Content="Назад" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="150" Background="#ffe2e2" Foreground="#8785a2" x:Name="Back" Click="Back_OnClick"/>
             </StackPanel>
         </Border>
     </Grid>

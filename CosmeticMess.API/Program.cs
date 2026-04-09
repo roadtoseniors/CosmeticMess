@@ -55,6 +55,22 @@ app.MapPost("/auth/login", (AuthData data, MyDbContext cnt) =>
     }
 });
 
+app.MapPost("/auth/register", (User user, MyDbContext cnt) =>
+{
+    if (cnt.Users.Any(u => u.Login == user.Login))
+        return Results.BadRequest("Логин уже занят");
+
+    var role = cnt.Roles.FirstOrDefault(r => r.Id == user.RoleId);
+    if (role == null)
+        return Results.BadRequest("Роль не найдена");
+
+    cnt.Attach(role);
+    user.Role = role;
+    cnt.Users.Add(user);
+    cnt.SaveChanges();
+    return Results.Ok(user);
+});
+
 app.MapGet("/api/users", (MyDbContext cnt) =>{
     return cnt.Users.ToList();
 });

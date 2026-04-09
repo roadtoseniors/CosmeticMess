@@ -53,6 +53,24 @@ internal class API
             return false;
         }
     }
+    
+    public async Task<User?> Register(User user)
+    {
+        var json = JsonSerializer.Serialize(user);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5000/auth/register");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            var result = JsonSerializer.Deserialize<User>(await response.Content.ReadAsStringAsync(), options);
+            return result;
+        }
+        else
+        {
+            return null;
+        }
+    }
 
     public async Task<List<User>> GetUsers()
     {
