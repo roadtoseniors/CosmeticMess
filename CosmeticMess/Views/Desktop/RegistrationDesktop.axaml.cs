@@ -24,6 +24,7 @@ public partial class RegistrationDesktop : Page
             string.IsNullOrWhiteSpace(Age.Text))
         {
             MessageBox.Show("Не все поля заполнены");
+            return;
         }
         
         var user = new User
