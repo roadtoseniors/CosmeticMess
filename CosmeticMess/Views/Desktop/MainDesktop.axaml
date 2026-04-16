@@ -28,8 +28,8 @@
         
         <Border Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
             <ScrollViewer>
-                <ItemsControl ItemsSource="{Binding Users}">
-                    <ItemsControl.ItemTemplate>
+                <ListBox ItemsSource="{Binding Users}">
+                    <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="#ffc7c7" BorderThickness="2" CornerRadius="6" Margin="10,10,10,10">
                                  <StackPanel Margin="10,10,10,10">
@@ -54,8 +54,8 @@
                                  </StackPanel>   
                             </Border>
                         </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </ScrollViewer>
         </Border>
     </Grid>

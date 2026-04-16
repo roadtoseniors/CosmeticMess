@@ -42,12 +42,8 @@ public partial class MainDesktop : Page
 
         foreach (var u in users.Where(u => u.RoleId == 2))
         {
-            // находим все записи MasterService где UserId совпадает с мастером
-            var userServiceIds = masterServices
-                .Where(ms => ms.UserId == u.Id)
-                .Select(ms => ms.ServiceTypeId);
+            var userServiceIds = masterServices.Where(ms => ms.UserId == u.Id).Select(ms => ms.ServiceTypeId);
 
-            // находим соответствующие ServiceType и добавляем в коллекцию мастера
             foreach (var serviceId in userServiceIds)
             {
                 var service = serviceTypes.FirstOrDefault(s => s.Id == serviceId);

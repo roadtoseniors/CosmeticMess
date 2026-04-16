@@ -11,8 +11,8 @@ namespace CosmeticMess.Views.Desktop;
 
 public partial class AccountDesktop : Page
 {
-    public User User { get; set; } = new User();
-    public ObservableCollection<Order> Orders { get; } = new();
+    public User User { get; set; } = API.Instance.AuthUser;
+    public ObservableCollection<Order> Orders { get; set; } = new();
     public ObservableCollection<Record> Records { get; } = new();
     public ObservableCollection<OrderStatus> OrderStatusList { get; } = new();
     public ObservableCollection<RecordStatus> RecordStatusList { get; } = new();
@@ -21,9 +21,10 @@ public partial class AccountDesktop : Page
     public AccountDesktop()
     {
         InitializeComponent();
-        DataContext = this;
+        
         LoadOrder();
         LoadRecords();
+        DataContext = this;
     }
 
     private void ToMain_OnClick(object? sender, RoutedEventArgs e)
@@ -34,10 +35,12 @@ public partial class AccountDesktop : Page
     private async void LoadOrder()
     {
         var orders = await API.Instance.GetOrders();
+        orders.Where(o => o.UserId == API.Instance.AuthUser.Id).ToList().ForEach(o => Orders.Add(o));
         var orderStatuses = await API.Instance.GetOrderStatuses();
         
-        if (orders == null || orderStatuses == null) return;
-        orders.Where(o => o.UserId == API.Instance.AuthUser.Id).ToList();
+        if (Orders.Any() || orderStatuses == null) return;
+        //orders.Where(o => o.UserId == API.Instance.AuthUser.Id).ToList();
+        
         
 
     }
