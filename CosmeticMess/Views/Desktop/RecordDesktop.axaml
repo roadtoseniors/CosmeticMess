@@ -4,6 +4,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:wpfLikeAvaloniaNavigation="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="CosmeticMess.Views.Desktop.RecordDesktop">
-    Welcome to Avalonia!
+             x:Class="CosmeticMess.Views.Desktop.RecordDesktop" Background="#f6f6f6" Foreground="#8785a2" FontFamily="Georgia">
+    <Grid RowDefinitions="Auto, *" ColumnDefinitions="*">
+        <Border Grid.Row="0" Grid.Column="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
+            <StackPanel Orientation="Horizontal" Spacing="5" Margin="10,10,10,10">
+                <TextBlock Text="Страница записей" FontSize="20" FontFamily="Georgia" Margin="5" FontWeight="SemiBold"/>
+                <Button Content="Фильтровать по дате" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Filtre" Click="Filtre_OnClick"/>
+                <Button Content="На главную" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Back" Click="Back_OnClick"/>
+            </StackPanel>
+        </Border>
+        
+        <Border Grid.Row="1" Grid.Column="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                <DataGrid>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID"/>
+                        <DataGridTextColumn Header="Имя клиента"/>
+                        <DataGridTextColumn Header="Фамилия клиента"/>
+                        <DataGridTextColumn Header="ID мастера"/>
+                        <DataGridTextColumn Header="Услуга"/>
+                        <DataGridTextColumn Header="Дата"/>
+                        <DataGridTextColumn Header="Тип оплаты"/>
+                        <DataGridTextColumn Header="Комментарий"/>
+                        <DataGridTextColumn Header="Статус"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </Border>
+    </Grid>
 </wpfLikeAvaloniaNavigation:Page>

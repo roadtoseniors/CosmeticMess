@@ -9,20 +9,30 @@
         <Border Grid.Row="0" Grid.ColumnSpan="2" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
             <StackPanel Orientation="Horizontal" Margin="10,10,10,10" Spacing="10">
                 <TextBlock Text="Здравствуйте" FontSize="20" Margin="5" FontWeight="SemiBold"/>
-                <TextBlock Text="{Binding Name}" FontSize="20" Margin="5" FontWeight="SemiBold"/>
-                <TextBlock Text="{Binding LastName}" FontSize="20" Margin="5" FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding User.Name}" FontSize="20" Margin="5" FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding User.LastName}" FontSize="20" Margin="5" FontWeight="SemiBold"/>
                 <Button Content="На главную" x:Name="ToMain" Click="ToMain_OnClick" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20"/>
             </StackPanel>
         </Border>
         
         <Border Grid.Row="1" Grid.Column="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
             <ScrollViewer>
-                <ItemsControl>
+                <ItemsControl ItemsSource="{Binding Order}">
+                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="10,10,10,10">
+                        <TextBlock Text="История заказов" FontSize="20"/>
+                    </StackPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Spacing="5">
-                                <TextBlock Text="История заказов" FontSize="20"/>
-                            </StackPanel>
+                            <Border BorderBrush="#ffc7c7" BorderThickness="2" CornerRadius="6" Margin="10,10,10,10">
+                                <StackPanel Orientation="Vertical" Spacing="10" Margin="10,10,10,10">
+                                    <TextBlock Text="Дата оформления заказа"/>
+                                    <TextBlock Text="{Binding Date}"/>
+                                    <TextBlock Text="Дата доставки"/>
+                                    <TextBlock Text="{Binding DeliveryDate}"/>
+                                    <TextBlock Text="Статус заказа"/>
+                                    <TextBlock Text="{Binding OrderStatus.Name}"/>
+                                </StackPanel>
+                            </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -31,12 +41,24 @@
         
         <Border Grid.Row="1" Grid.Column="1" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
             <ScrollViewer>
-                <ItemsControl>
+                <ItemsControl ItemsSource="{Binding Record}">
+                    <StackPanel Orientation="Horizontal" Spacing="5" Margin="10,10,10,10">
+                        <TextBlock Text="История записей" FontSize="20"/>
+                    </StackPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Spacing="5">
-                                <TextBlock Text="История записей" FontSize="20"/>
-                            </StackPanel>
+                            <Border BorderBrush="#ffc7c7" BorderThickness="2" CornerRadius="6" Margin="10,10,10,10">
+                                <StackPanel Orientation="Vertical" Spacing="5" Margin="10,10,10,10">
+                                    <TextBlock Text="Дата записи"/>
+                                    <TextBlock Text="{Binding Date}"/>
+                                    <TextBlock Text="Тип записи"/>
+                                    <TextBlock Text="{Binding ServiceType.Name}"/>
+                                    <TextBlock Text="Цена"/>
+                                    <TextBlock Text="{Binding ServiceType.Price}"/>
+                                    <TextBlock Text="Статус"/>
+                                    <TextBlock Text="{Binding RecordStatus.Name}"/>
+                                </StackPanel>
+                            </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

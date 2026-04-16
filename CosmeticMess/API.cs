@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net;
 using System.Net.Http;
 using System.Text.Json;
@@ -132,6 +133,21 @@ internal class API
         }
     }
 
+    public async Task<List<RecordStatus>> GetRecordStatuses()
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:5000/api/recordstatuses");
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            List<RecordStatus>? statuses = JsonSerializer.Deserialize<List<RecordStatus>>(await response.Content.ReadAsStringAsync(), options);
+            return statuses;
+        }
+        else
+        {
+            return new List<RecordStatus>();
+        }
+    }
+
     public async Task<List<ProductType>> GetProductTypes()
     {
         var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:5000/api/producttypes");
@@ -204,6 +220,22 @@ internal class API
         else
         {
             return new List<Order>();
+        }
+    }
+
+    public async Task<List<OrderStatus>> GetOrderStatuses()
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:5000/api/orderstatuses");
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            List<OrderStatus>? statuses =
+                JsonSerializer.Deserialize<List<OrderStatus>>(await response.Content.ReadAsStringAsync(), options);
+            return statuses;
+        }
+        else
+        {
+            return new List<OrderStatus>();
         }
     }
 
