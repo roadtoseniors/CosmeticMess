@@ -7,11 +7,9 @@ namespace CosmeticMess.Entities;
 public partial class Record
 {
     public int Id { get; set; }
-    [JsonIgnore]
     public int ClientId { get; set; }
     [JsonIgnore]
     public int MasterId { get; set; }
-    [JsonIgnore]
     public int ServiceTypeId { get; set; }
 
     public DateTime Date { get; set; }
@@ -19,7 +17,7 @@ public partial class Record
     public int PaymentId { get; set; }
 
     public string? Comment { get; set; }
-    [JsonIgnore]
+    
     public int StatusId { get; set; }
 
     public virtual User Client { get; set; } = null!;
