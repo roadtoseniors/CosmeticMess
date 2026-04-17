@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -10,11 +11,10 @@ namespace CosmeticMess.Views.Desktop;
 
 public partial class RecordDesktop : Page
 {
-    public ObservableCollection<User> Users { get; } = new();
-    public ObservableCollection<Record> Records { get; } = new();
-    public ObservableCollection<ServiceType> ServiceTypes { get; } = new();
-    public ObservableCollection<PaymentType> PaymentTypes { get; } = new();
-    public ObservableCollection<RecordStatus> RecordStatus { get; } = new();
+    public User User { get; set; } = API.Instance.AuthUser;
+    public ObservableCollection<Record> Records { get; set; } = new();
+    public ObservableCollection<RecordStatus> RecordStatusList { get; set; } = new();
+    public ObservableCollection<ServiceType> ServiceTypes { get; set; } = new();
     public RecordDesktop()
     {
         InitializeComponent();
@@ -24,7 +24,7 @@ public partial class RecordDesktop : Page
 
     private void Filtre_OnClick(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     private void Back_OnClick(object? sender, RoutedEventArgs e)
@@ -34,10 +34,15 @@ public partial class RecordDesktop : Page
 
     private async void Load()
     {
-        var users = await API.Instance.GetUsers();
         var records = await API.Instance.GetRecords();
-        var serviceTypes = await API.Instance.GetServiceTypes();
-        var paymentTypes = await API.Instance.GetPaymentTypes();
+        records.Where(r => r.ClientId == null).ToList().ForEach(r => Records.Add(r));
         var recordStatuses = await API.Instance.GetRecordStatuses();
+        
+        if(Records.Any() || RecordStatusList.Any()) return;
+    }
+
+    private void SelectedRecord_OnClick(object? sender, RoutedEventArgs e)
+    {
+        NavigationService.Navigate(new SelectedRecord());
     }
 }

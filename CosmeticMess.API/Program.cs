@@ -170,9 +170,17 @@ app.MapPost("/api/post/products", [Authorize](Product product, MyDbContext cnt) 
 app.MapPost("/api/post/records", [Authorize](Record record, MyDbContext cnt) =>
 {
     cnt.Attach(record.Master);
-    cnt.Attach(record.Client);
+    if (record.Client is not null)
+    {
+        cnt.Attach(record.Client);
+    }
+    
     cnt.Attach(record.ServiceType);
-    cnt.Attach(record.Payment);
+    if (record.Payment is not null)
+    {
+        cnt.Attach(record.Payment);
+    }
+   
     cnt.Attach(record.Status);
     cnt.Records.Add(record);
     cnt.SaveChanges();

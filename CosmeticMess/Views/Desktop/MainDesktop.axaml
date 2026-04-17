@@ -13,6 +13,7 @@
                 <Button Content="Регистрация" Background="LightGreen" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Registration" Click="Registration_OnClick"/>
                 <Button Content="Панель Админа" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="AdminPanel" Click="AdminPanel_OnClick"/>
                 <Button Content="Профиль" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Account" Click="Account_OnClick"/>
+                <Button Content="Записаться" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Record" Click="Record_OnClick"/>
             </StackPanel>
         </Border>
         
@@ -28,8 +29,8 @@
         
         <Border Grid.Row="2" Grid.ColumnSpan="2" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
             <ScrollViewer>
-                <ListBox ItemsSource="{Binding Users}">
-                    <ListBox.ItemTemplate>
+                <ItemsControl ItemsSource="{Binding Users}" >
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="#ffc7c7" BorderThickness="2" CornerRadius="6" Margin="10,10,10,10">
                                  <StackPanel Margin="10,10,10,10">
@@ -38,24 +39,24 @@
                                          <TextBlock Text="{Binding LastName}" FontSize="20"/>
                                      </StackPanel>
                                      <StackPanel>
-                                         <ListBox ItemsSource="{Binding MasterServices}">
-                                             <ListBox.ItemsPanel>
+                                         <ItemsControl ItemsSource="{Binding MasterServices}">
+                                             <ItemsControl.ItemsPanel>
                                                  <ItemsPanelTemplate>
                                                      <WrapPanel Orientation="Horizontal" ItemSpacing="5" Margin="5,5,5,5"/>
                                                  </ItemsPanelTemplate>
-                                             </ListBox.ItemsPanel>
-                                             <ListBox.ItemTemplate>
+                                             </ItemsControl.ItemsPanel>
+                                             <ItemsControl.ItemTemplate>
                                                  <DataTemplate>
                                                      <Button Background="#ffe2e2" Foreground="#8785a2" Content="{Binding ServiceType.Name}" FontSize="15"/>
                                                  </DataTemplate>
-                                             </ListBox.ItemTemplate>
-                                         </ListBox>
+                                             </ItemsControl.ItemTemplate>
+                                         </ItemsControl>
                                      </StackPanel>
                                  </StackPanel>   
                             </Border>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </ScrollViewer>
         </Border>
     </Grid>

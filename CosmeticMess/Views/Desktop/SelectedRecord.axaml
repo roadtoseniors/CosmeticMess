@@ -5,5 +5,5 @@
              xmlns:wpfLikeAvaloniaNavigation="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CosmeticMess.Views.Desktop.SelectedRecord">
-    Welcome to Avalonia!
+    
 </wpfLikeAvaloniaNavigation:Page>

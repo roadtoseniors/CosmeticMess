@@ -55,4 +55,9 @@ public partial class MainDesktop : Page
     {
         NavigationService.Navigate(new AccountDesktop());
     }
+
+    private void Record_OnClick(object? sender, RoutedEventArgs e)
+    {
+        NavigationService.Navigate(new RecordDesktop());
+    }
 }

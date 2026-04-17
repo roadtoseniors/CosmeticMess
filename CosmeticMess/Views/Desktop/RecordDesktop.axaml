@@ -16,17 +16,21 @@
         
         <Border Grid.Row="1" Grid.Column="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
             <ScrollViewer HorizontalScrollBarVisibility="Auto">
-                <DataGrid>
+                <DataGrid ItemsSource="{Binding Records}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID"/>
-                        <DataGridTextColumn Header="Имя клиента"/>
-                        <DataGridTextColumn Header="Фамилия клиента"/>
-                        <DataGridTextColumn Header="ID мастера"/>
-                        <DataGridTextColumn Header="Услуга"/>
-                        <DataGridTextColumn Header="Дата"/>
-                        <DataGridTextColumn Header="Тип оплаты"/>
-                        <DataGridTextColumn Header="Комментарий"/>
-                        <DataGridTextColumn Header="Статус"/>
+                        <DataGridTextColumn Header="Имя мастера" Binding="{Binding Master.Name}" Width="Auto"/>
+                        <DataGridTextColumn Header="Фамилия мастера" Binding="{Binding Master.LastName}" Width="Auto"/>
+                        <DataGridTextColumn Header="Услуга" Binding="{Binding ServiceTypes.Name}" Width="Auto"/>
+                        <DataGridTextColumn Header="Дата" Binding="{Binding Date}" Width="Auto"/>
+                        <DataGridTextColumn Header="Тип оплаты" Binding="{Binding Payment.Name}" Width="Auto"/>
+                        <DataGridTextColumn Header="Статус" Binding="{Binding Status.Name}" Width="Auto"/>
+                        <DataGridTemplateColumn Header="Действие" Width="Auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Записаться" x:Name="SelectedRecord" Click="SelectedRecord_OnClick" Width="70"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
