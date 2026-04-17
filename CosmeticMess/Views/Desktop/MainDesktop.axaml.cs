@@ -39,18 +39,9 @@ public partial class MainDesktop : Page
         var masterServices = await API.Instance.GetMasterServices();
 
         if (users == null || serviceTypes == null || masterServices == null) return;
-
-        foreach (var u in users.Where(u => u.RoleId == 2))
+        users = users.Where(u => u.RoleId == 2).ToList();
+        foreach (var u in users)
         {
-            var userServiceIds = masterServices.Where(ms => ms.UserId == u.Id).Select(ms => ms.ServiceTypeId);
-
-            foreach (var serviceId in userServiceIds)
-            {
-                var service = serviceTypes.FirstOrDefault(s => s.Id == serviceId);
-                if (service != null)
-                    u.MasterServices.Add(new MasterService { ServiceType = service });
-            }
-
             Users.Add(u);
         }
     }

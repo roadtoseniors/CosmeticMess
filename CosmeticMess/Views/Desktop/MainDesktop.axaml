@@ -38,18 +38,18 @@
                                          <TextBlock Text="{Binding LastName}" FontSize="20"/>
                                      </StackPanel>
                                      <StackPanel>
-                                         <ItemsControl ItemsSource="{Binding MasterServices}">
-                                             <ItemsControl.ItemsPanel>
+                                         <ListBox ItemsSource="{Binding MasterServices}">
+                                             <ListBox.ItemsPanel>
                                                  <ItemsPanelTemplate>
                                                      <WrapPanel Orientation="Horizontal" ItemSpacing="5" Margin="5,5,5,5"/>
                                                  </ItemsPanelTemplate>
-                                             </ItemsControl.ItemsPanel>
-                                             <ItemsControl.ItemTemplate>
+                                             </ListBox.ItemsPanel>
+                                             <ListBox.ItemTemplate>
                                                  <DataTemplate>
                                                      <Button Background="#ffe2e2" Foreground="#8785a2" Content="{Binding ServiceType.Name}" FontSize="15"/>
                                                  </DataTemplate>
-                                             </ItemsControl.ItemTemplate>
-                                         </ItemsControl>
+                                             </ListBox.ItemTemplate>
+                                         </ListBox>
                                      </StackPanel>
                                  </StackPanel>   
                             </Border>
