@@ -4,6 +4,69 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:wpfLikeAvaloniaNavigation="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="CosmeticMess.Views.Desktop.SelectedRecord">
-    
+             x:Class="CosmeticMess.Views.Desktop.SelectedRecord" Background="#f6f6f6" Foreground="#8785a2" FontFamily="Georgia">
+    <Grid RowDefinitions="Auto, *" ColumnDefinitions="*">
+        <Border Grid.Row="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,5">
+            <StackPanel Orientation="Horizontal" Spacing="5" Margin="10">
+                <TextBlock Text="Запись на услугу" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <Button Content="Назад" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="18" Click="Back_OnClick"/>
+            </StackPanel>
+        </Border>
+        
+        <Border Grid.Row="1" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,5,10,10">
+            <ScrollViewer>
+                <StackPanel Spacing="15" Margin="20">
+                    <Border Background="#ffe2e2" CornerRadius="6" Padding="14">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Услуга" FontSize="13" Opacity="0.7"/>
+                            <TextBlock Text="{Binding Record.ServiceType.Name}" FontSize="18" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Border Background="#ffe2e2" CornerRadius="6" Padding="14">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Мастер" FontSize="13" Opacity="0.7"/>
+                            <TextBlock FontSize="18" FontWeight="SemiBold">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="Record.Master.Name"/>
+                                        <Binding Path="Record.Master.LastName"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Border Background="#ffe2e2" CornerRadius="6" Padding="14">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Дата" FontSize="13" Opacity="0.7"/>
+                            <TextBlock Text="{Binding Record.Date, StringFormat={}{0:dd.MM.yyyy HH:mm}}" FontSize="18" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Border Background="White" CornerRadius="6" Padding="14" BorderBrush="#ffc7c7" BorderThickness="2">
+                        <StackPanel Spacing="6">
+                            <TextBlock x:Name="ErrorText" Text="Выберите способ оплаты" Foreground="Red" IsVisible="False"/>
+                            <ComboBox x:Name="PaymentComboBox" ItemsSource="{Binding PaymentTypes}" SelectedItem="{Binding SelectedPaymentType}" PlaceholderText="Выберите способ оплаты" HorizontalAlignment="Stretch" FontSize="16">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Payment}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Border Background="White" CornerRadius="6" Padding="14" BorderBrush="#ffc7c7" BorderThickness="2">
+                        <StackPanel Spacing="6">
+                            <TextBlock Text="Комментарий (необязательно)" FontSize="13" Opacity="0.7"/>
+                            <TextBox x:Name="CommentBox" Text="{Binding Comment}" Watermark="Введите комментарий..." AcceptsReturn="True" Height="80" FontSize="15"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Button Content="Записаться" Background="#ffc7c7" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" HorizontalAlignment="Stretch" Height="48" x:Name="Recorded" Click="Recorded_OnClick"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
 </wpfLikeAvaloniaNavigation:Page>

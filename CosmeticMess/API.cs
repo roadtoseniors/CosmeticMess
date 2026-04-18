@@ -427,7 +427,7 @@ internal class API
     {
         var json = JsonSerializer.Serialize(record);
         var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
-        var request = new HttpRequestMessage(HttpMethod.Put, $"http://localhost:5000/api/put/records/{record.Id}");
+        var request = new HttpRequestMessage(HttpMethod.Put, $"http://localhost:5000/api/put/records");
         request.Content = content;
         var response = await Client.SendAsync(request);
         if (response.StatusCode == HttpStatusCode.OK)
