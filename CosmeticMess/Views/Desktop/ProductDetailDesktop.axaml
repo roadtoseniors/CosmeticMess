@@ -5,5 +5,60 @@
              xmlns:wpfLikeAvaloniaNavigation="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CosmeticMess.Views.Desktop.ProductDetailDesktop">
-    Welcome to Avalonia!
+    <Grid RowDefinitions="Auto, *">
+        <Border Grid.Row="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,5"> 
+            <StackPanel Orientation="Horizontal" Margin="10" Spacing="8">
+                <TextBlock Text="Информация о товаре" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <Button Content="Назад" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="16" Click="Back_OnClick"/>
+            </StackPanel>
+        </Border>
+        
+        <Border Grid.Row="1" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,5,10,10">
+            <ScrollViewer>
+                <StackPanel Spacing="12" Margin="24">
+                    <TextBlock Text="{Binding Product.Name}" FontSize="24" FontWeight="Bold"/>
+                    
+                    <Border Background="#ffe2e2" CornerRadius="6" Padding="14">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Тип товара" FontSize="12" Opacity="0.7"/>
+                            <TextBlock Text="{Binding Product.ProductType.Name}" FontSize="16"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Border Background="#ffe2e2" CornerRadius="6" Padding="14">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Производитель" FontSize="12" Opacity="0.7"/>
+                            <TextBlock Text="{Binding Product.Manufacturer.Name}" FontSize="16"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Border Background="#ffe2e2" CornerRadius="6" Padding="14">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Описание" FontSize="12" Opacity="0.7"/>
+                            <TextBlock Text="{Binding Product.Description}" FontSize="15" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Border Background="#ffe2e2" CornerRadius="6" Padding="14">
+                        <StackPanel Orientation="Horizontal" Spacing="20">
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="Цена" FontSize="12" Opacity="0.7"/>
+                                <TextBlock Text="{Binding Product.Price, StringFormat={}{0:# ##0.00} ₽}" FontSize="20" FontWeight="SemiBold"/>
+                            </StackPanel>
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="Скидка" FontSize="12" Opacity="0.7"/>
+                                <TextBlock Text="{Binding Product.DiscountPercent, StringFormat={}{0}%}" FontSize="20" FontWeight="SemiBold" Foreground="#c0392b"/>
+                            </StackPanel>
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="Оценка" FontSize="12" Opacity="0.7"/>
+                                <TextBlock Text="{Binding Product.Rating, StringFormat=рейтинг {0:0.0}}" FontSize="20" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Button Content="В корзину" Background="#ffc7c7" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" HorizontalAlignment="Stretch" Height="48" Click="AddToBasket_OnClick"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
 </wpfLikeAvaloniaNavigation:Page>

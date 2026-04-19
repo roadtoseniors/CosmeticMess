@@ -158,7 +158,7 @@ app.MapPost("/api/post/users", [Authorize](User user, MyDbContext cnt) =>
     return Results.Ok(user);
 });
 
-app.MapPost("/api/post/products", [Authorize](Product product, MyDbContext cnt) =>
+app.MapPost("/api/post/products", (Product product, MyDbContext cnt) =>
 {
     cnt.Attach(product.ProductType);
     cnt.Attach(product.Manufacturer);

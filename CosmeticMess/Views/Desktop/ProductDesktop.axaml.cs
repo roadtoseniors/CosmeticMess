@@ -92,7 +92,7 @@ public partial class ProductDesktop : Page
     {
         if ((sender as Border)?.DataContext is Product product)
         {
-            //NavigationService.Navigate(new ProductDetailDesktop(product));
+            NavigationService.Navigate(new ProductDetailDesktop(product));
         }
     }
 
