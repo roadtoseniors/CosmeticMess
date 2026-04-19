@@ -23,6 +23,7 @@
                 <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button Content="По мастеру" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20"/>
                     <Button Content="По типу услуги" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20"/>
+                    <Button Content="Товары" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" Click="Products_OnClick"/>
                 </StackPanel>
             </StackPanel>
         </Border>

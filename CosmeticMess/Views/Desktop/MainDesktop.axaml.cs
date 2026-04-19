@@ -60,4 +60,9 @@ public partial class MainDesktop : Page
     {
         NavigationService.Navigate(new RecordDesktop());
     }
+
+    private void Products_OnClick(object? sender, RoutedEventArgs e)
+    {
+        NavigationService.Navigate(new ProductDesktop());
+    }
 }

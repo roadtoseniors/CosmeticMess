@@ -25,4 +25,9 @@ public partial class AuthDesktop : Page
     {
         NavigationService.Navigate(new MainDesktop());
     }
+
+    private void Reg_OnClick(object? sender, RoutedEventArgs e)
+    {
+        NavigationService.Navigate(new RegistrationDesktop());
+    }
 }

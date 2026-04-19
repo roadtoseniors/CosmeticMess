@@ -12,6 +12,7 @@
                 <TextBox Watermark="Введите логин" x:Name="LoginBox"/>
                 <TextBox Watermark="Введите пароль" x:Name="PasswordBox"/>
                 <Button HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="Auth" Click="Auth_OnClick" Content="Войти" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="150" Background="#ffe2e2" Foreground="#8785a2"/>
+                <Button HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="Reg" Click="Reg_OnClick" Content="Регистрация" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="150" Background="#ffe2e2" Foreground="#8785a2"/>
                 <Button HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="Back" Click="Back_OnClick" Content="Назад" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="150" Background="#ffe2e2" Foreground="#8785a2"/>
             </StackPanel>
         </Border>

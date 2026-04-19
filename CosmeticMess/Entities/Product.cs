@@ -31,4 +31,10 @@ public partial class Product
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
     public virtual ProductType ProductType { get; set; } = null!;
+    
+    [JsonIgnore]
+    public string CardBackground => DiscountPercent > 15 ? "#fff0c0" : "#ffffff";
+
+    [JsonIgnore]
+    public bool HasDiscount => DiscountPercent > 0;
 }

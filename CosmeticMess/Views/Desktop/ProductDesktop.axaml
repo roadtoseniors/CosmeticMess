@@ -4,6 +4,73 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:wpfLikeAvaloniaNavigation="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="CosmeticMess.Views.Desktop.ProductDesktop">
-    Welcome to Avalonia!
+             x:Class="CosmeticMess.Views.Desktop.ProductDesktop" Background="#f6f6f6" Foreground="#8785a2" FontFamily="Georgia">
+    <Grid RowDefinitions="Auto, *">
+        <Border Grid.Row="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,5">
+            <WrapPanel Orientation="Horizontal" Margin="10" ItemSpacing="8">
+                <TextBlock Text="Товары" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                
+                <TextBox x:Name="SearchBox" Watermark="Поиск по названию..." Width="200" FontSize="15" TextChanged="Search_OnChanged"/>
+                
+                <ComboBox x:Name="TypeFiltre" PlaceholderText="Тип товара" FontSize="15" Width="160" ItemsSource="{Binding ProductTypes}" SelectionChanged="Filter_OnChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                
+                <ComboBox x:Name="TypeManufacturer" PlaceholderText="Производитель" FontSize="15" Width="160" ItemsSource="{Binding Manufacturers}" SelectionChanged="Filter_OnChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                
+                <ComboBox x:Name="SortBox" PlaceholderText="Сортировка" FontSize="15" Width="180" SelectionChanged="Filter_OnChanged">
+                    <ComboBoxItem Content="по убыванию рейтинга"/>
+                    <ComboBoxItem Content="по возрастанию рейтинга"/>
+                </ComboBox>
+                
+                <Button Content="Сбросить" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="16" Click="Reset_OnClick"/>
+                <Button Content="Корзина" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="16" Click="Basket_OnClick"/>
+                <Button Content="На главную" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="16" Click="Back_OnClick"/>
+            </WrapPanel>
+        </Border>
+        
+        <Border Grid.Row="1" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,5,10,10">
+            <ScrollViewer>
+                <ItemsControl ItemsSource="{Binding FiltreProducts}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" Margin="10" ItemSpacing="10"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Width="200" CornerRadius="8" Padding="12" Margin="5" BorderBrush="#ffc7c7" BorderThickness="2" Background="{Binding CardBackground}" PointerPressed="Product_OnClick">
+                                <StackPanel Spacing="6">
+                                    <TextBlock Text="{Binding Name}" FontSize="15" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding ProductType.Name}" FontSize="12" Opacity="0.7"/>
+                                    <TextBlock Text="{Binding Manufacturer.Name}" FontSize="12" Opacity="0.7"/>
+                                    <StackPanel Orientation="Horizontal" Spacing="6" >
+                                        <TextBlock Text="{Binding Price, StringFormat={}{0:# ##0.00} ₽}" FontSize="14" FontWeight="SemiBold"/>
+                                        <Border Background="#ffc7c7" CornerRadius="4" Padding="4,1" IsVisible="{Binding HasDiscount}">
+                                            <TextBlock Text="{Binding DiscountPercent, StringFormat=-{0}%}" FontSize="12" Foreground="#c0392b"/>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Spacing="4">
+                                        <TextBlock Text="рейтинг" FontSize="13"/>
+                                        <TextBlock Text="{Binding Rating, StringFormat={}{0:0.0}}" FontSize="13"/>
+                                    </StackPanel>
+                                    <Button Content="В корзину" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="13" HorizontalAlignment="Stretch" Click="AddToBasket_OnClick"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+    </Grid>
 </wpfLikeAvaloniaNavigation:Page>
