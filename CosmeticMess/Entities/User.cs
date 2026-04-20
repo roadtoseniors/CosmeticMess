@@ -34,4 +34,10 @@ public partial class User
     public virtual ICollection<Record> RecordMasters { get; set; } = new List<Record>();
 
     public virtual Role Role { get; set; } = null!;
+    
+    [JsonIgnore]
+    public string FrozenLabel => IsFrozen ? "Заморожен" : "Активен";
+
+    [JsonIgnore]
+    public string FrozenColor => IsFrozen ? "#b0c4de" : "#d4edda";
 }

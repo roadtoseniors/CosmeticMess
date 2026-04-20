@@ -1,55 +1,47 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="550"
-        x:Class="CosmeticMess.Views.Desktop.EditUserWindow"
-        Title="Редактирование пользователя" WindowStartupLocation="CenterOwner" Background="#f6f6f6" FontFamily="Georgia">
-    <Grid RowDefinitions="*, Auto">
-        <Border Grid.Row="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10">
-            <StackPanel Margin="20" Spacing="10">
-                <StackPanel Spacing="4">
-                    <TextBlock Text="Имя" Foreground="#8785a2"/>
-                    <TextBox x:Name="NameBox" BorderBrush="#ffc7c7"/>
-                </StackPanel>
-                <StackPanel Spacing="4">
-                    <TextBlock Text="Фамилия" Foreground="#8785a2"/>
-                    <TextBox x:Name="LastNameBox" BorderBrush="#ffc7c7"/>
-                </StackPanel>
-                <StackPanel Spacing="4">
-                    <TextBlock Text="Телефон" Foreground="#8785a2"/>
-                    <TextBox x:Name="PhoneBox" BorderBrush="#ffc7c7"/>
-                </StackPanel>
-                <StackPanel Spacing="4">
-                    <TextBlock Text="Логин" Foreground="#8785a2"/>
-                    <TextBox x:Name="LoginBox" BorderBrush="#ffc7c7"/>
-                </StackPanel>
-                <StackPanel Spacing="4">
-                    <TextBlock Text="Возраст" Foreground="#8785a2"/>
-                    <TextBox x:Name="AgeBox" BorderBrush="#ffc7c7"/>
-                </StackPanel>
-                <StackPanel Spacing="4">
-                    <TextBlock Text="Роль" Foreground="#8785a2"/>
-                    <ComboBox x:Name="RoleBox" BorderBrush="#ffc7c7" HorizontalAlignment="Stretch">
-                        <ComboBoxItem Tag="1" Content="Администратор"/>
-                        <ComboBoxItem Tag="2" Content="Мастер"/>
-                        <ComboBoxItem Tag="3" Content="Клиент"/>
-                        <ComboBoxItem Tag="4" Content="Менеджер"/>
-                    </ComboBox>
-                </StackPanel>
-                <StackPanel Spacing="4">
-                    <TextBlock Text="Заморожен?" Foreground="#8785a2"/>
-                    <ToggleSwitch x:Name="FrozenBox" 
-                                  OffContent="Нет" 
-                                  OnContent="Да"
-                                  BorderBrush="#ffc7c7"/>
-                </StackPanel>
-            </StackPanel>
-        </Border>
-        
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10" Margin="10" HorizontalAlignment="Right">
-            <Button BorderBrush="#8785a2" Content="Отмена" Background="#f6f6f6" Foreground="#8785a2" FontSize="16" Click="Cancel_OnClick"/>
-            <Button BorderBrush="#8785a2" Content="Сохранить" Background="#ffe2e2" Foreground="#8785a2" FontSize="16" Click="Save_OnClick"/>
+        x:Class="CosmeticMess.Views.Desktop.UserEditWindow"
+        Title="Пользователь" Width="380" Height="480"
+        Background="#f6f6f6" FontFamily="Georgia" Foreground="#8785a2"
+        CanResize="False" WindowStartupLocation="CenterOwner">
+    <StackPanel Spacing="12" Margin="24">
+        <TextBlock x:Name="TitleText" FontSize="20" FontWeight="SemiBold"/>
+        <StackPanel Spacing="4">
+            <TextBlock Text="Имя" FontSize="13" Opacity="0.7"/>
+            <TextBox x:Name="NameBox" FontSize="15"/>
         </StackPanel>
-    </Grid>
+        <StackPanel Spacing="4">
+            <TextBlock Text="Фамилия" FontSize="13" Opacity="0.7"/>
+            <TextBox x:Name="LastNameBox" FontSize="15"/>
+        </StackPanel>
+        <StackPanel Spacing="4">
+            <TextBlock Text="Телефон" FontSize="13" Opacity="0.7"/>
+            <TextBox x:Name="PhoneBox" FontSize="15"/>
+        </StackPanel>
+        <StackPanel Spacing="4">
+            <TextBlock Text="Возраст" FontSize="13" Opacity="0.7"/>
+            <NumericUpDown x:Name="AgeBox" Minimum="0" Maximum="120" FontSize="15"/>
+        </StackPanel>
+        <StackPanel Spacing="4">
+            <TextBlock Text="Роль" FontSize="13" Opacity="0.7"/>
+            <ComboBox x:Name="RoleBox" ItemsSource="{Binding Roles}"
+                      HorizontalAlignment="Stretch" FontSize="15">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Spacing="4">
+            <TextBlock Text="Логин" FontSize="13" Opacity="0.7"/>
+            <TextBox x:Name="LoginBox" FontSize="15"/>
+        </StackPanel>
+        <StackPanel Spacing="4">
+            <TextBlock Text="Пароль" FontSize="13" Opacity="0.7"/>
+            <TextBox x:Name="PasswordBox" PasswordChar="*" FontSize="15"/>
+        </StackPanel>
+        <TextBlock x:Name="ErrorText" Foreground="Red" FontSize="13" IsVisible="False"/>
+        <Button Content="Сохранить" Background="#ffc7c7" Foreground="#8785a2" FontFamily="Georgia" FontSize="18" HorizontalAlignment="Stretch" Height="44" x:Name="Save" Click="Save_OnClick"/>
+    </StackPanel>
 </Window>

@@ -4,51 +4,44 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:wpfLikeAvaloniaNavigation="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="CosmeticMess.Views.Desktop.AdminDesktop" Background="#f6f6f6" Foreground="#8785a2" FontFamily="Georgia">
-    <Grid RowDefinitions="Auto,*">
-        <Border Grid.Row="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
-            <StackPanel Orientation="Horizontal" Margin="10,10,10,10" Spacing="10">
-                <TextBlock Text="Панель администратора" FontSize="20" FontWeight="SemiBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Button Content="Назад" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Back" Click="Back_OnClick"/>
-                <Button Content="Обновить" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Update" Click="Update_OnClick"/>
+             x:Class="CosmeticMess.Views.Desktop.AdminDesktop"
+             Background="#f6f6f6" Foreground="#8785a2" FontFamily="Georgia">
+    <Grid RowDefinitions="Auto, *">
+        <Border Grid.Row="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,5">
+            <StackPanel Orientation="Horizontal" Margin="10" Spacing="10">
+                <TextBlock Text="Панель администратора" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <Button Content="Добавить" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="18" Click="Add_OnClick"/>
+                <Button Content="Назад" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="18" Click="Back_OnClick"/>
             </StackPanel>
         </Border>
 
-        <Border Grid.Row="1" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,10">
+        <Border Grid.Row="1" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,5,10,10">
             <ScrollViewer HorizontalScrollBarVisibility="Auto">
-                <StackPanel MinWidth="800">
-                    <Grid ColumnDefinitions="50,*,*,120,120,100,70,100,90,90" Background="#ffc7c7">
-                        <TextBlock Grid.Column="0" Text="ID" FontWeight="SemiBold" Margin="8,6"/>
-                        <TextBlock Grid.Column="1" Text="Имя" FontWeight="SemiBold" Margin="8,6"/>
-                        <TextBlock Grid.Column="2" Text="Фамилия" FontWeight="SemiBold" Margin="8,6"/>
-                        <TextBlock Grid.Column="3" Text="Телефон" FontWeight="SemiBold" Margin="8,6"/>
-                        <TextBlock Grid.Column="4" Text="Логин" FontWeight="SemiBold" Margin="8,6"/>
-                        <TextBlock Grid.Column="5" Text="Роль" FontWeight="SemiBold" Margin="8,6"/>
-                        <TextBlock Grid.Column="6" Text="Возраст" FontWeight="SemiBold" Margin="8,6"/>
-                        <TextBlock Grid.Column="7" Text="Заморожен?" FontWeight="SemiBold" Margin="8,6"/>
-                        <TextBlock Grid.Column="8" Text="Изменить" FontWeight="SemiBold" Margin="8,6"/>
-                        <TextBlock Grid.Column="9" Text="Удалить" FontWeight="SemiBold" Margin="8,6"/>
-                    </Grid>
-                    
-                    <ItemsControl x:Name="TableUser">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Grid ColumnDefinitions="50,*,*,120,120,100,70,100,90,90">
-                                    <TextBlock Grid.Column="0" Text="{Binding Id}" Margin="8,6" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="1" Text="{Binding Name}" Margin="8,6" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="2" Text="{Binding LastName}" Margin="8,6" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="3" Text="{Binding Phone}" Margin="8,6" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="4" Text="{Binding Login}" Margin="8,6" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="5" Text="{Binding Role.Name}" Margin="8,6" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="6" Text="{Binding Age}" Margin="8,6" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="7" Text="{Binding IsFrozen}" Margin="8,6" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <Button Grid.Column="8" Content="Изменить" Background="#ffe2e2" Foreground="#8785a2" Margin="4,3" FontSize="12" x:Name="Edit" Click="Edit_OnClick"/>
-                                    <Button Grid.Column="9" Content="Удалить" Background="#ffb3b3" Foreground="#8785a2" Margin="4,3" FontSize="12" Click="Button_OnClick"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
+                <DataGrid x:Name="UsersGrid" ItemsSource="{Binding Users}" IsReadOnly="True" CanUserReorderColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="Auto"/>
+                        <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="Auto"/>
+                        <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="Auto"/>
+                        <DataGridTextColumn Header="Возраст" Binding="{Binding Age}" Width="Auto"/>
+                        <DataGridTextColumn Header="Роль" Binding="{Binding Role.Name}" Width="Auto"/>
+                        <DataGridTextColumn Header="Логин" Binding="{Binding Login}" Width="Auto"/>
+                        <DataGridTemplateColumn Header="Заморожен" Width="Auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="{Binding FrozenLabel}" Background="{Binding FrozenColor}" Foreground="#8785a2" FontFamily="Georgia" Click="Frozen_OnClick"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Действие" Width="Auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Изменить" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" Click="Edit_OnClick"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
             </ScrollViewer>
         </Border>
     </Grid>
