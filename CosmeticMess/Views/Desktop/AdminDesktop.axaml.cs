@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using CosmeticMess.Entities;
@@ -14,7 +15,8 @@ namespace CosmeticMess.Views.Desktop;
 
 public partial class AdminDesktop : Page
 {
-    private ObservableCollection<User> Users = new();
+    public ObservableCollection<User> Users { get; set; } = new();
+
     public AdminDesktop()
     {
         InitializeComponent();
@@ -25,6 +27,7 @@ public partial class AdminDesktop : Page
     private async void Load()
     {
         var users = await API.Instance.GetUsers();
+        Console.WriteLine($"Получено пользователей: {users.Count}");
         users.ForEach(u => Users.Add(u));
     }
 
@@ -36,12 +39,11 @@ public partial class AdminDesktop : Page
     private async void Frozen_OnClick(object? sender, RoutedEventArgs e)
     {
         if ((sender as Button)?.DataContext is not User user)
-        {
             return;
-        }
+
         user.IsFrozen = !user.IsFrozen;
         await API.Instance.PutUsers(user);
-        
+
         var id = Users.IndexOf(user);
         Users.Remove(user);
         Users.Insert(id, user);
@@ -65,7 +67,9 @@ public partial class AdminDesktop : Page
     {
         var window = new EditUserWindow(user, isNew);
         window.Closed += async (_, _) => await Reload();
-        window.ShowDialog(null);
+    
+        var parent = (Application.Current.ApplicationLifetime as ClassicDesktopStyleApplicationLifetime)?.MainWindow;
+        window.ShowDialog(parent);
     }
 
     private async Task Reload()

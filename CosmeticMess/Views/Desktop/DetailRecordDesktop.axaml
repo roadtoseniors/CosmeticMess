@@ -5,5 +5,59 @@
              xmlns:wpfLikeAvaloniaNavigation="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="CosmeticMess.Views.Desktop.DetailRecordDesktop">
-    Welcome to Avalonia!
+    <Grid RowDefinitions="Auto, *">
+        <Border Grid.Row="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,5">
+            <StackPanel Orientation="Horizontal" Spacing="10" Margin="10">
+                <TextBlock Text="Информация о записи" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <Button Content="Назад" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="18" Click="Back_OnClick"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="1" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,5,10,10">
+            <ScrollViewer>
+                <StackPanel Spacing="12" Margin="24">
+
+                    <Border Background="#ffe2e2" CornerRadius="6" Padding="14">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Дата и время" FontSize="12" Opacity="0.7"/>
+                            <TextBlock Text="{Binding Record.Date, StringFormat={}{0:dd.MM.yyyy HH:mm}}" FontSize="18" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#ffe2e2" CornerRadius="6" Padding="14">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Услуга" FontSize="12" Opacity="0.7"/>
+                            <TextBlock Text="{Binding Record.ServiceType.Name}" FontSize="18" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#ffe2e2" CornerRadius="6" Padding="14">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Клиент" FontSize="12" Opacity="0.7"/>
+                            <TextBlock FontSize="18" FontWeight="SemiBold">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} {1}">
+                                        <Binding Path="Record.Client.Name"/>
+                                        <Binding Path="Record.Client.LastName"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock Text="{Binding Record.Client.Phone}" FontSize="15" Opacity="0.8"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#ffe2e2" CornerRadius="6" Padding="14">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Статус" FontSize="12" Opacity="0.7"/>
+                            <TextBlock Text="{Binding Record.Status.Name}" FontSize="18" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Border>
+
+                    <TextBlock x:Name="ErrorText" Foreground="Red" FontSize="13" IsVisible="False"/>
+
+                    <Button x:Name="CompleteButton" Content="Завершить запись" Background="#ffc7c7" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" HorizontalAlignment="Stretch" Height="48" Click="Complete_OnClick"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
 </wpfLikeAvaloniaNavigation:Page>

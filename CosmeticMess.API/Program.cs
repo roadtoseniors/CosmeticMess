@@ -285,6 +285,23 @@ app.MapDelete("/api/delete/records", [Authorize](int id, MyDbContext cnt) =>
     }
 });
 
+app.MapPost("/api/post/masterservices", [Authorize](MasterService ms, MyDbContext cnt) =>
+{
+    cnt.Attach(ms.ServiceType);
+    cnt.MasterServices.Add(ms);
+    cnt.SaveChanges();
+    return Results.Ok(ms);
+});
+
+app.MapDelete("/api/delete/masterservices", [Authorize](int id, MyDbContext cnt) =>
+{
+    var ms = cnt.MasterServices.FirstOrDefault(m => m.Id == id);
+    if (ms is null) return Results.BadRequest();
+    cnt.MasterServices.Remove(ms);
+    cnt.SaveChanges();
+    return Results.Ok();
+});
+
 app.Run();
 
 public class AuthOptions

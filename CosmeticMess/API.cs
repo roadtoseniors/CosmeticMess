@@ -487,6 +487,24 @@ internal class API
         return response.StatusCode == HttpStatusCode.OK || response.StatusCode == HttpStatusCode.NoContent;
     }
     
+    public async Task<MasterService?> PostMasterService(MasterService ms)
+    {
+        var json = JsonSerializer.Serialize(ms);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5000/api/post/masterservices");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+            return JsonSerializer.Deserialize<MasterService>(await response.Content.ReadAsStringAsync(), options);
+        return null;
+    }
+
+    public async Task<bool> DeleteMasterService(int id)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Delete, $"http://localhost:5000/api/delete/masterservices?id={id}");
+        var response = await Client.SendAsync(request);
+        return response.StatusCode == HttpStatusCode.OK;
+    }
     
     public record AuthData(User user, string token);
 }

@@ -17,7 +17,7 @@
 
         <Border Grid.Row="1" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,5,10,10">
             <ScrollViewer HorizontalScrollBarVisibility="Auto">
-                <DataGrid x:Name="UsersGrid" ItemsSource="{Binding Users}" IsReadOnly="True" CanUserReorderColumns="False">
+                <DataGrid ItemsSource="{Binding Users}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
                         <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="Auto"/>

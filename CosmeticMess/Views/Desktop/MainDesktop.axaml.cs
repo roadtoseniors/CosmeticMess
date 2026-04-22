@@ -65,4 +65,9 @@ public partial class MainDesktop : Page
     {
         NavigationService.Navigate(new ProductDesktop());
     }
+
+    private void Master_OnClick(object? sender, RoutedEventArgs e)
+    {
+        NavigationService.Navigate(new MasterDesktop());
+    }
 }

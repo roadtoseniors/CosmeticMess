@@ -8,7 +8,7 @@ public partial class Record
 {
     public int Id { get; set; }
     public int? ClientId { get; set; }
-    [JsonIgnore]
+    
     public int MasterId { get; set; }
     public int ServiceTypeId { get; set; }
 
