@@ -27,10 +27,10 @@ public partial class DetailRecordDesktop : Page
     private async void Complete_OnClick(object? sender, RoutedEventArgs e)
     {
         var statuses = await API.Instance.GetRecordStatuses();
-        var completed = statuses.FirstOrDefault(s => s.Name == "Завершено");
+        var completed = statuses.FirstOrDefault(s => s.Name == "Выполнено");
         if (completed is null)
         {
-            ErrorText.Text = "Статус 'Завершено' не найден в базе.";
+            ErrorText.Text = "Статус 'Выполнено' не найден в базе.";
             ErrorText.IsVisible = true;
             return;
         }
