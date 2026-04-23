@@ -35,6 +35,11 @@ public partial class User
 
     public virtual Role Role { get; set; } = null!;
     
-    public string FrozenLabel => IsFrozen ? "Заморожен" : "Активен";
-    public string FrozenColor => IsFrozen ? "#b0c4de" : "#d4edda";
+    public string AvatarLetter => Name?.Length > 0 ? Name[0].ToString().ToUpper() : "?";
+
+    public string FrozenLabel => IsFrozen ? "Разморозить" : "Заморозить";
+    public string FrozenColor => IsFrozen ? "#b0d4f1" : "#ffe2e2";
+
+    public string RoleBadgeColor => "#f0eeff";
+    public string FrozenBadgeColor => "#ddeeff";
 }
