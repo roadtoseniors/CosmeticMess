@@ -299,6 +299,102 @@ internal class API
         }
     }
 
+    public async Task<Basket?> GetBasketByUser(int userId)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, $"http://localhost:5000/api/baskets/user/{userId}");
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            return JsonSerializer.Deserialize<Basket>(await response.Content.ReadAsStringAsync(), options);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public async Task<Basket?> PostBasket(Basket basket)
+    {
+        var json = JsonSerializer.Serialize(basket);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5000/api/post/baskets");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            return JsonSerializer.Deserialize<Basket>(await response.Content.ReadAsStringAsync(), options);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public async Task<BasketItem?> PostBasketItem(BasketItem basketItem)
+    {
+        var json = JsonSerializer.Serialize(basketItem);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5000/api/post/basketitems");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            return JsonSerializer.Deserialize<BasketItem>(await response.Content.ReadAsStringAsync(), options);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public async Task<bool> PutBasketItem(BasketItem basketItem)
+    {
+        var json = JsonSerializer.Serialize(basketItem);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Put, "http://localhost:5000/api/put/basketitems");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public async Task<bool> DeleteBasketItem(int id)
+    {
+        var request = new HttpRequestMessage(HttpMethod.Delete, $"http://localhost:5000/api/delete/basketitems?id={id}");
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public async Task<OrderItem?> PostOrderItem(OrderItem orderItem)
+    {
+        var json = JsonSerializer.Serialize(orderItem);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5000/api/post/orderitems");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+            return JsonSerializer.Deserialize<OrderItem>(await response.Content.ReadAsStringAsync(), options);
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public async Task<List<MasterService>> GetMasterServices()
     {
         var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:5000/api/masterservices");

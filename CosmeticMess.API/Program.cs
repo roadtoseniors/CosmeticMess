@@ -150,6 +150,56 @@ app.MapGet("/api/baskets", [Authorize](MyDbContext cnt) =>
     return cnt.Baskets.ToList();
 });
 
+app.MapGet("/api/baskets/user/{userId}", [Authorize](int userId, MyDbContext cnt) =>
+{
+    cnt.Baskets.Where(b => b.UserId == userId).Select(b => new {b.Id, b.UserId}).FirstOrDefault();
+});
+
+app.MapPost("/api/post/baskets", [Authorize](Basket basket, MyDbContext cnt) =>
+{
+    cnt.Attach(basket.User);
+    cnt.Baskets.Add(basket);
+    cnt.SaveChanges();
+    return Results.Ok(new { basket.Id, basket.UserId });
+});
+
+app.MapPost("/api/post/basketitems", [Authorize](BasketItem item, MyDbContext cnt) =>
+{
+    cnt.Attach(item.Basket);
+    cnt.Attach(item.Product);
+    cnt.BasketItems.Add(item);
+    cnt.SaveChanges();
+    return Results.Ok(new { item.Id, item.BasketId, item.ProductId, item.Quantity,
+        Product = new { item.Product.Id, item.Product.Name, item.Product.Price, item.Product.DiscountPercent }});
+});
+
+app.MapPut("/api/put/basketitems", [Authorize](BasketItem item, MyDbContext cnt) =>
+{
+    cnt.BasketItems.Update(item);
+    cnt.SaveChanges();
+    return Results.Ok(item);
+});
+
+app.MapDelete("/api/put/basketitems", [Authorize](int id, MyDbContext cnt) =>
+{
+    var item = cnt.BasketItems.FirstOrDefault(b => b.Id == id);
+    if (item is null)
+    {
+        return Results.BadRequest();
+    }
+    cnt.SaveChanges();
+    return Results.Ok();
+});
+
+app.MapPost("/api/post/orderitems", [Authorize](OrderItem orderItem, MyDbContext cnt) =>
+{
+    cnt.Attach(orderItem.Order);
+    cnt.Attach(orderItem.Product);
+    cnt.OrderItems.Add(orderItem);
+    cnt.SaveChanges();
+    return Results.Ok(orderItem);
+});
+
 app.MapPost("/api/post/users", [Authorize](User user, MyDbContext cnt) =>
 {
     cnt.Attach(user.Role);
