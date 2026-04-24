@@ -303,14 +303,10 @@ internal class API
     {
         var request = new HttpRequestMessage(HttpMethod.Get, $"http://localhost:5000/api/baskets/user/{userId}");
         var response = await Client.SendAsync(request);
-        if (response.StatusCode == HttpStatusCode.OK)
-        {
-            return JsonSerializer.Deserialize<Basket>(await response.Content.ReadAsStringAsync(), options);
-        }
-        else
-        {
-            return null;
-        }
+        var body = await response.Content.ReadAsStringAsync();
+        if (response.StatusCode == HttpStatusCode.OK && !string.IsNullOrWhiteSpace(body) && body != "null")
+            return JsonSerializer.Deserialize<Basket>(body, options);
+        return null;
     }
 
     public async Task<Basket?> PostBasket(Basket basket)

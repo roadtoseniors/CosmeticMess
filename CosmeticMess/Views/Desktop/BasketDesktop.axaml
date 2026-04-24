@@ -4,18 +4,31 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:wpfLikeAvaloniaNavigation="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="CosmeticMess.Views.Desktop.BasketDesktop" Background="#f6f6f6" Foreground="#8785a2" FontFamily="Georgia">
-    <Grid RowDefinitions="Auto, *">
+             x:Class="CosmeticMess.Views.Desktop.BasketDesktop"
+             Background="#f6f6f6" Foreground="#8785a2" FontFamily="Georgia">
+    <Grid RowDefinitions="Auto, Auto, *">
+
+        <!-- Шапка -->
         <Border Grid.Row="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,5">
-            <StackPanel Orientation="Horizontal" Spacing="5" Margin="10,10,10,10">
-                <TextBlock Text="Ваша корзина" FontSize="20" FontFamily="Georgia" Margin="5" FontWeight="SemiBold"/>
-                <Button />
+            <StackPanel Orientation="Horizontal" Spacing="10" Margin="10">
+                <TextBlock Text="Ваша корзина" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <Button Content="Назад" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="18" Click="Back_OnClick"/>
             </StackPanel>
         </Border>
-        
-        <Border Grid.Row="1" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,5,10,10">
+
+        <!-- Итого + заказ -->
+        <Border Grid.Row="1" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,5,10,5">
+            <StackPanel Orientation="Horizontal" Spacing="16" Margin="14,10">
+                <TextBlock Text="Итого:" FontSize="16" VerticalAlignment="Center"/>
+                <TextBlock x:Name="TotalText" Text="0 ₽" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <Button Content="Оформить заказ" Background="#ffc7c7" Foreground="#8785a2" FontFamily="Georgia" FontSize="16" Click="Order_OnClick"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Товары -->
+        <Border Grid.Row="2" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,5,10,10">
             <ScrollViewer>
-                <ItemsControl ItemsSource="{Binding }">
+                <ItemsControl ItemsSource="{Binding BasketItems}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal" Margin="10" ItemSpacing="10"/>
@@ -23,10 +36,16 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Width="200" CornerRadius="8" Padding="12" Margin="5" BorderBrush="#ffc7c7" BorderThickness="2" Background="{Binding CardBackground}">
-                                <StackPanel Spacing="6">
-                                    <TextBlock Text="{Binding Name}" FontSize="15" FontWeight="SemiBold" TextWrapping="Wrap"/>
-                                    <TextBlock/>
+                            <Border Width="200" CornerRadius="8" Padding="12" Margin="5" BorderBrush="#ffc7c7" BorderThickness="2" Background="White">
+                                <StackPanel Spacing="8">
+                                    <TextBlock Text="{Binding Product.Name}" FontSize="15" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding Product.Price, StringFormat={}{0:# ##0.00} ₽}" FontSize="14"/>
+                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                        <Button Content="-" Width="30" Height="30" Background="#ffe2e2" Foreground="#8785a2" Click="Minus_OnClick"/>
+                                        <TextBlock Text="{Binding Quantity}" FontSize="16" VerticalAlignment="Center" MinWidth="28" TextAlignment="Center"/>
+                                        <Button Content="+" Width="30" Height="30" Background="#ffe2e2" Foreground="#8785a2" Click="Plus_OnClick"/>
+                                    </StackPanel>
+                                    <Button Content="Удалить" Background="#ffc7c7" Foreground="#8785a2" FontFamily="Georgia" FontSize="13" HorizontalAlignment="Stretch" Click="Delete_OnClick"/>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>

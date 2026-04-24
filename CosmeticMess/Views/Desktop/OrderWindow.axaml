@@ -4,6 +4,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="CosmeticMess.Views.Desktop.OrderWindow"
-        Title="OrderWindow">
-    Welcome to Avalonia!
+        Title="Оформление заказа" Width="420" Height="360"
+        Background="#f6f6f6" FontFamily="Georgia" Foreground="#8785a2"
+        CanResize="False" WindowStartupLocation="CenterOwner">
+    <StackPanel Spacing="14" Margin="24">
+        <TextBlock Text="Оформление заказа" FontSize="20" FontWeight="SemiBold"/>
+        <StackPanel Spacing="6">
+            <TextBlock Text="Дата получения (до 7 дней от сегодня):" FontSize="14"/>
+            <CalendarDatePicker x:Name="DeliveryDatePicker" HorizontalAlignment="Stretch" FontSize="15"/>
+        </StackPanel>
+
+        <StackPanel Spacing="6">
+            <TextBlock Text="Способ оплаты:" FontSize="14"/>
+            <ComboBox x:Name="PaymentComboBox" ItemsSource="{Binding PaymentTypes}" PlaceholderText="Выберите способ оплаты" HorizontalAlignment="Stretch" FontSize="15">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Payment}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </StackPanel>
+
+        <TextBlock x:Name="ErrorText" Foreground="Red" FontSize="13" IsVisible="False"/>
+        <Button Content="Подтвердить заказ" Background="#ffc7c7" Foreground="#8785a2" FontFamily="Georgia" FontSize="18" HorizontalAlignment="Stretch" Height="44" Click="Confirm_OnClick"/>
+    </StackPanel>
 </Window>

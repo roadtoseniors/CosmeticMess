@@ -96,12 +96,32 @@ public partial class ProductDesktop : Page
         }
     }
 
-    private void AddToBasket_OnClick(object? sender, RoutedEventArgs e)
+    private async void AddToBasket_OnClick(object? sender, RoutedEventArgs e)
     {
         if (API.Instance.AuthUser == null)
         {
             NavigationService.Navigate(new AuthDesktop());
             return;
         }
+
+        if ((sender as Button)?.DataContext is not Product product) return;
+
+        var user = API.Instance.AuthUser;
+
+        var basket = await API.Instance.GetBasketByUser(user.Id);
+        if (basket == null)
+        {
+            basket = await API.Instance.PostBasket(new Basket { UserId = user.Id, User = user });
+            if (basket == null) return;
+        }
+
+        await API.Instance.PostBasketItem(new BasketItem
+        {
+            BasketId = basket.Id,
+            Basket = basket,
+            ProductId = product.Id,
+            Product = product,
+            Quantity = 1
+        });
     }
 }
