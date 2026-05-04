@@ -25,6 +25,7 @@
                     <Button Content="По типу услуги" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20"/>
                     <Button Content="Товары" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" Click="Products_OnClick"/>
                     <Button Content="Страница мастера" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" x:Name="Master" Click="Master_OnClick"/>
+                    <Button Content="Менеджер" Background="#ffe2e2" Foreground="#8785a2" FontFamily="Georgia" FontSize="20" Click="Manager_OnClick"/>
                 </StackPanel>
             </StackPanel>
         </Border>

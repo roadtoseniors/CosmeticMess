@@ -1,0 +1,28 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="CosmeticMess.Views.Desktop.ManufacturerEditWindow"
+        Title="ManufacturerEditWindow">
+    <StackPanel Spacing="10" Margin="20">
+        <TextBlock x:Name="TitleText" FontSize="20" FontWeight="SemiBold"/>
+
+        <TextBlock Text="Название" FontSize="13" Opacity="0.7"/>
+        <TextBox x:Name="NameBox" FontSize="15"/>
+
+        <TextBlock Text="Страна" FontSize="13" Opacity="0.7"/>
+        <ComboBox x:Name="CountryBox" ItemsSource="{Binding Countries}"
+                  HorizontalAlignment="Stretch" FontSize="15">
+            <ComboBox.ItemTemplate>
+                <DataTemplate><TextBlock Text="{Binding Name}"/></DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <TextBlock x:Name="ErrorText" Foreground="Red" FontSize="13" IsVisible="False"/>
+        <Button Content="Сохранить" Background="#ffc7c7" Foreground="#8785a2"
+                FontFamily="Georgia" FontSize="18" HorizontalAlignment="Stretch"
+                Height="44" Click="Save_OnClick"/>
+    </StackPanel>
+
+</Window>

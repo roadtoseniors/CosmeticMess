@@ -352,6 +352,49 @@ app.MapDelete("/api/delete/masterservices", [Authorize](int id, MyDbContext cnt)
     return Results.Ok();
 });
 
+app.MapPost("/api/post/manufacturers", [Authorize](Manufacturer m, MyDbContext db) =>
+{
+    db.Attach(m.Country);
+    db.Manufacturers.Add(m);
+    db.SaveChanges();
+    return Results.Ok(new { m.Id, m.Name, m.CountryId });
+}).RequireAuthorization();
+
+app.MapPut("/api/put/manufacturers", [Authorize](Manufacturer m, MyDbContext db) =>
+{
+    db.Manufacturers.Update(m);
+    db.SaveChanges();
+    return Results.Ok(m);
+}).RequireAuthorization();
+
+app.MapPost("/api/post/servicetypes", [Authorize](ServiceType s, MyDbContext db) =>
+{
+    db.ServiceTypes.Add(s);
+    db.SaveChanges();
+    return Results.Ok(s);
+}).RequireAuthorization();
+
+app.MapPut("/api/put/servicetypes", [Authorize](ServiceType s, MyDbContext db) =>
+{
+    db.ServiceTypes.Update(s);
+    db.SaveChanges();
+    return Results.Ok(s);
+}).RequireAuthorization();
+
+app.MapPost("/api/post/producttypes", [Authorize](ProductType t, MyDbContext db) =>
+{
+    db.ProductTypes.Add(t);
+    db.SaveChanges();
+    return Results.Ok(t);
+}).RequireAuthorization();
+
+app.MapPut("/api/put/producttypes", [Authorize](ProductType t, MyDbContext db) =>
+{
+    db.ProductTypes.Update(t);
+    db.SaveChanges();
+    return Results.Ok(t);
+}).RequireAuthorization();
+
 app.Run();
 
 public class AuthOptions

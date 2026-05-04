@@ -1,0 +1,51 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="CosmeticMess.Views.Desktop.AddRecordWindow"
+        Title="AddRecordWindow">
+    <StackPanel Spacing="10" Margin="20">
+        <TextBlock Text="Новая запись" FontSize="20" FontWeight="SemiBold"/>
+
+        <TextBlock Text="Клиент (ФИО / телефон)" FontSize="13" Opacity="0.7"/>
+        <TextBox x:Name="ClientSearchBox" Watermark="Начните вводить..." FontSize="15"
+                 TextChanged="ClientSearch_OnChanged"/>
+        <ListBox x:Name="ClientList" MaxHeight="120" FontSize="14"
+                 SelectionChanged="ClientList_OnChanged"/>
+
+        <TextBlock Text="Мастер" FontSize="13" Opacity="0.7"/>
+        <ComboBox x:Name="MasterBox" ItemsSource="{Binding Masters}"
+                  HorizontalAlignment="Stretch" FontSize="15">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="Name"/>
+                                <Binding Path="LastName"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <TextBlock Text="Услуга" FontSize="13" Opacity="0.7"/>
+        <ComboBox x:Name="ServiceBox" ItemsSource="{Binding ServiceTypes}"
+                  HorizontalAlignment="Stretch" FontSize="15">
+            <ComboBox.ItemTemplate>
+                <DataTemplate><TextBlock Text="{Binding Name}"/></DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <TextBlock Text="Дата и время" FontSize="13" Opacity="0.7"/>
+        <CalendarDatePicker x:Name="DatePicker" HorizontalAlignment="Stretch" FontSize="15"/>
+        <TimePicker x:Name="TimePicker" HorizontalAlignment="Stretch" FontSize="15"/>
+
+        <TextBlock x:Name="ErrorText" Foreground="Red" FontSize="13" IsVisible="False"/>
+        <Button Content="Записать" Background="#ffc7c7" Foreground="#8785a2"
+                FontFamily="Georgia" FontSize="18" HorizontalAlignment="Stretch"
+                Height="44" Click="Save_OnClick"/>
+    </StackPanel>
+</Window>

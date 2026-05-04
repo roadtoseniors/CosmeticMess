@@ -70,4 +70,9 @@ public partial class MainDesktop : Page
     {
         NavigationService.Navigate(new MasterDesktop());
     }
+
+    private void Manager_OnClick(object? sender, RoutedEventArgs e)
+    {
+        NavigationService.Navigate(new ManagerDesktop());
+    }
 }

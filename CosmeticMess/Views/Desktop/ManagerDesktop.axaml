@@ -4,6 +4,208 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:wpfLikeAvaloniaNavigation="clr-namespace:WpfLikeAvaloniaNavigation;assembly=WpfLikeAvaloniaNavigation"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="CosmeticMess.Views.Desktop.ManagerDesktop">
-    Welcome to Avalonia!
+             x:Class="CosmeticMess.Views.Desktop.ManagerDesktop"
+             Background="#f6f6f6" Foreground="#8785a2" FontFamily="Georgia">
+    <Grid RowDefinitions="Auto, Auto, *">
+
+        <!-- Шапка -->
+        <Border Grid.Row="0" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,10,10,5">
+            <StackPanel Orientation="Horizontal" Spacing="10" Margin="10">
+                <TextBlock Text="Панель менеджера" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                <Button Content="На главную" Background="#ffe2e2" Foreground="#8785a2"
+                        FontFamily="Georgia" FontSize="18" Click="Back_OnClick"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Переключение вкладок -->
+        <Border Grid.Row="1" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,5,10,5">
+            <WrapPanel Orientation="Horizontal" Margin="10" ItemSpacing="8">
+                <Button Content="Записи" Background="#ffe2e2" Foreground="#8785a2"
+                        FontFamily="Georgia" FontSize="16" Click="Tab_OnClick" Tag="Records"/>
+                <Button Content="Заказы" Background="#ffe2e2" Foreground="#8785a2"
+                        FontFamily="Georgia" FontSize="16" Click="Tab_OnClick" Tag="Orders"/>
+                <Button Content="Товары" Background="#ffe2e2" Foreground="#8785a2"
+                        FontFamily="Georgia" FontSize="16" Click="Tab_OnClick" Tag="Products"/>
+                <Button Content="Производители" Background="#ffe2e2" Foreground="#8785a2"
+                        FontFamily="Georgia" FontSize="16" Click="Tab_OnClick" Tag="Manufacturers"/>
+                <Button Content="Типы товаров" Background="#ffe2e2" Foreground="#8785a2"
+                        FontFamily="Georgia" FontSize="16" Click="Tab_OnClick" Tag="ProductTypes"/>
+                <Button Content="Услуги" Background="#ffe2e2" Foreground="#8785a2"
+                        FontFamily="Georgia" FontSize="16" Click="Tab_OnClick" Tag="ServiceTypes"/>
+            </WrapPanel>
+        </Border>
+
+        <!-- Контент вкладок -->
+        <Border Grid.Row="2" BorderBrush="#ffc7c7" BorderThickness="3" CornerRadius="6" Margin="10,5,10,10">
+            <Grid>
+
+                <!-- Записи -->
+                <Grid x:Name="RecordsTab" RowDefinitions="Auto, *" IsVisible="True">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="10" Margin="10,8">
+                        <TextBox x:Name="ClientSearch" Watermark="Поиск клиента по ФИО / телефону..."
+                                 Width="280" FontSize="14" TextChanged="ClientSearch_OnChanged"/>
+                        <Button Content="Добавить запись" Background="#ffe2e2" Foreground="#8785a2"
+                                FontFamily="Georgia" FontSize="14" Click="AddRecord_OnClick"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1">
+                        <DataGrid x:Name="RecordsGrid" ItemsSource="{Binding Records}"
+                                  IsReadOnly="True" CanUserReorderColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Дата"    Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy HH:mm}}" Width="140"/>
+                                <DataGridTextColumn Header="Услуга"  Binding="{Binding ServiceType.Name}" Width="*"/>
+                                <DataGridTextColumn Header="Мастер"  Binding="{Binding Master.Name}" Width="120"/>
+                                <DataGridTextColumn Header="Клиент"  Binding="{Binding Client.Name}" Width="120"/>
+                                <DataGridTextColumn Header="Статус"  Binding="{Binding Status.Name}" Width="110"/>
+                                <DataGridTemplateColumn Header="Действия" Width="200">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                                <Button Content="Перенести" Background="#ffe2e2" Foreground="#8785a2"
+                                                        FontFamily="Georgia" Click="RescheduleRecord_OnClick"/>
+                                                <Button Content="Отменить" Background="#ffc7c7" Foreground="#8785a2"
+                                                        FontFamily="Georgia" Click="CancelRecord_OnClick"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+                </Grid>
+
+                <!-- Заказы -->
+                <Grid x:Name="OrdersTab" RowDefinitions="*" IsVisible="False">
+                    <ScrollViewer>
+                        <DataGrid x:Name="OrdersGrid" ItemsSource="{Binding Orders}"
+                                  IsReadOnly="True" CanUserReorderColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID"       Binding="{Binding Id}"          Width="50"/>
+                                <DataGridTextColumn Header="Клиент"   Binding="{Binding User.Name}"   Width="*"/>
+                                <DataGridTextColumn Header="Дата"     Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}" Width="110"/>
+                                <DataGridTextColumn Header="Доставка" Binding="{Binding DeliveryDate}" Width="110"/>
+                                <DataGridTextColumn Header="Оплата"   Binding="{Binding Payment.Payment}" Width="120"/>
+                                <DataGridTextColumn Header="Статус"   Binding="{Binding Status.Name}" Width="110"/>
+                                <DataGridTemplateColumn Header="Действие" Width="110">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Закрыть" Background="#ffe2e2" Foreground="#8785a2"
+                                                    FontFamily="Georgia" Click="CloseOrder_OnClick"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+                </Grid>
+
+                <!-- Товары -->
+                <Grid x:Name="ProductsTab" RowDefinitions="Auto, *" IsVisible="False">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="10" Margin="10,8">
+                        <Button Content="Добавить товар" Background="#ffe2e2" Foreground="#8785a2"
+                                FontFamily="Georgia" FontSize="14" Click="AddProduct_OnClick"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1">
+                        <DataGrid x:Name="ProductsGrid" ItemsSource="{Binding Products}"
+                                  IsReadOnly="True" CanUserReorderColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Название"     Binding="{Binding Name}"           Width="*"/>
+                                <DataGridTextColumn Header="Тип"          Binding="{Binding ProductType.Name}" Width="120"/>
+                                <DataGridTextColumn Header="Производитель" Binding="{Binding Manufacturer.Name}" Width="130"/>
+                                <DataGridTextColumn Header="Цена"         Binding="{Binding Price}"           Width="80"/>
+                                <DataGridTextColumn Header="Скидка"       Binding="{Binding DiscountPercent}" Width="70"/>
+                                <DataGridTextColumn Header="Статус"       Binding="{Binding FrozenLabel}"     Width="100"/>
+                                <DataGridTemplateColumn Header="Действия" Width="180">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                                <Button Content="Изменить" Background="#ffe2e2" Foreground="#8785a2"
+                                                        FontFamily="Georgia" Click="EditProduct_OnClick"/>
+                                                <Button Content="{Binding FrozenLabel}" Background="{Binding FrozenColor}"
+                                                        Foreground="#8785a2" FontFamily="Georgia" Click="FreezeProduct_OnClick"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+                </Grid>
+
+                <!-- Производители -->
+                <Grid x:Name="ManufacturersTab" RowDefinitions="Auto, *" IsVisible="False">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="10" Margin="10,8">
+                        <Button Content="Добавить производителя" Background="#ffe2e2" Foreground="#8785a2"
+                                FontFamily="Georgia" FontSize="14" Click="AddManufacturer_OnClick"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1">
+                        <DataGrid x:Name="ManufacturersGrid" ItemsSource="{Binding Manufacturers}"
+                                  IsReadOnly="True" CanUserReorderColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
+                                <DataGridTextColumn Header="Страна"   Binding="{Binding Country.Name}" Width="150"/>
+                                <DataGridTemplateColumn Header="Действие" Width="100">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Изменить" Background="#ffe2e2" Foreground="#8785a2"
+                                                    FontFamily="Georgia" Click="EditManufacturer_OnClick"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+                </Grid>
+
+                <!-- Типы товаров -->
+                <Grid x:Name="ProductTypesTab" RowDefinitions="Auto, *" IsVisible="False">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="10" Margin="10,8">
+                        <Button Content="Добавить тип" Background="#ffe2e2" Foreground="#8785a2"
+                                FontFamily="Georgia" FontSize="14" Click="AddProductType_OnClick"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1">
+                        <DataGrid x:Name="ProductTypesGrid" ItemsSource="{Binding ProductTypes}"
+                                  IsReadOnly="True" CanUserReorderColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
+                                <DataGridTemplateColumn Header="Действие" Width="100">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Изменить" Background="#ffe2e2" Foreground="#8785a2"
+                                                    FontFamily="Georgia" Click="EditProductType_OnClick"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+                </Grid>
+
+                <!-- Услуги -->
+                <Grid x:Name="ServiceTypesTab" RowDefinitions="Auto, *" IsVisible="False">
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="10" Margin="10,8">
+                        <Button Content="Добавить услугу" Background="#ffe2e2" Foreground="#8785a2"
+                                FontFamily="Georgia" FontSize="14" Click="AddServiceType_OnClick"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1">
+                        <DataGrid x:Name="ServiceTypesGrid" ItemsSource="{Binding ServiceTypes}"
+                                  IsReadOnly="True" CanUserReorderColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*"/>
+                                <DataGridTextColumn Header="Цена"     Binding="{Binding Price}" Width="100"/>
+                                <DataGridTemplateColumn Header="Действие" Width="100">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Изменить" Background="#ffe2e2" Foreground="#8785a2"
+                                                    FontFamily="Georgia" Click="EditServiceType_OnClick"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ScrollViewer>
+                </Grid>
+
+            </Grid>
+        </Border>
+    </Grid>
 </wpfLikeAvaloniaNavigation:Page>

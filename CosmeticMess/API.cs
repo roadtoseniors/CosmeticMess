@@ -598,5 +598,77 @@ internal class API
         return response.StatusCode == HttpStatusCode.OK;
     }
     
+        public async Task<Manufacturer?> PostManufacturer(Manufacturer m)
+    {
+        var json = JsonSerializer.Serialize(m);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5000/api/post/manufacturers");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+            return JsonSerializer.Deserialize<Manufacturer>(await response.Content.ReadAsStringAsync(), options);
+        return null;
+    }
+
+    public async Task<Manufacturer?> PutManufacturer(Manufacturer m)
+    {
+        var json = JsonSerializer.Serialize(m);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Put, "http://localhost:5000/api/put/manufacturers");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+            return JsonSerializer.Deserialize<Manufacturer>(await response.Content.ReadAsStringAsync(), options);
+        return null;
+    }
+
+    public async Task<ServiceType?> PostServiceType(ServiceType s)
+    {
+        var json = JsonSerializer.Serialize(s);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5000/api/post/servicetypes");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+            return JsonSerializer.Deserialize<ServiceType>(await response.Content.ReadAsStringAsync(), options);
+        return null;
+    }
+
+    public async Task<ServiceType?> PutServiceType(ServiceType s)
+    {
+        var json = JsonSerializer.Serialize(s);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Put, "http://localhost:5000/api/put/servicetypes");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+            return JsonSerializer.Deserialize<ServiceType>(await response.Content.ReadAsStringAsync(), options);
+        return null;
+    }
+
+    public async Task<ProductType?> PostProductType(ProductType t)
+    {
+        var json = JsonSerializer.Serialize(t);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5000/api/post/producttypes");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+            return JsonSerializer.Deserialize<ProductType>(await response.Content.ReadAsStringAsync(), options);
+        return null;
+    }
+
+    public async Task<ProductType?> PutProductType(ProductType t)
+    {
+        var json = JsonSerializer.Serialize(t);
+        var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+        var request = new HttpRequestMessage(HttpMethod.Put, "http://localhost:5000/api/put/producttypes");
+        request.Content = content;
+        var response = await Client.SendAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+            return JsonSerializer.Deserialize<ProductType>(await response.Content.ReadAsStringAsync(), options);
+        return null;
+    }
+    
     public record AuthData(User user, string token);
 }
